@@ -1,12 +1,10 @@
 #include <stdio.h>
 #include "../include/creer_liste_positions.h"
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  creer_liste_positions
- *  Description:  
- * =====================================================================================
- */
+/**
+ * @brief Crée une liste de positions vide
+ * @return Renvoie la liste, si echec renvoie NULL
+*/
 
 t_ListePositions* creer_liste_positions(){
     t_ListePositions* myListePositions = malloc(sizeof(t_ListePositions));

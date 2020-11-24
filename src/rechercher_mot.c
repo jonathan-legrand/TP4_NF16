@@ -2,12 +2,13 @@
 #include <stdio.h>
 #include <string.h>
 
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  rechercher_mot
- *  Description:  
- * =====================================================================================
- */
+/**
+ * @brief Rechercher un mot dans un index. 
+ * Index est un ABR. 
+ * Donc il faut appliquer l'algorithme connu de recherche dans un ABR.
+ * @param mot le mot recherché
+ * @return Renvoie, si le mot existe, le noeud correspondant, sinon renvoie NULL
+*/
 
 t_Noeud* rechercher_mot(t_Index *index, char *mot){
     t_Noeud* noeudEnCours = index->racine;
