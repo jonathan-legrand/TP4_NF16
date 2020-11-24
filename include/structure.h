@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef t_position t_Position;
+typedef struct t_position t_Position;
 
 typedef struct t_position
 {
@@ -11,7 +11,7 @@ typedef struct t_position
     t_Position* suivant;
 }t_position;
 
-typedef t_listePositions t_ListePositions;
+typedef struct t_listePositions t_ListePositions;
 
 typedef struct t_listePositions
 {
@@ -19,7 +19,7 @@ typedef struct t_listePositions
     int nb_elements;
 }t_listePositions;
 
-typedef t_noeud t_Noeud;
+typedef struct t_noeud t_Noeud;
 
 typedef struct t_noeud
 {
@@ -30,7 +30,7 @@ typedef struct t_noeud
     t_Noeud* filsDroit;
 }t_noeud;
 
-typedef t_index t_Index;
+typedef struct t_index t_Index;
 
 typedef struct t_index
 {
