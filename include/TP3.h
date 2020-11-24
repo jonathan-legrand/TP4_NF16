@@ -1,17 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef t_position t_Position;
+
 typedef struct t_position
 {
     int numero_ligne;
     int ordre;
     int numero_phrase;
-    t_position* suivant;
+    t_Position* suivant;
 }t_position;
+
+typedef t_listePositions t_ListePositions;
 
 typedef struct t_listePositions
 {
-    t_listePositions* debut;
+    t_Position* debut;
     int nb_elements;
 }t_listePositions;
 
@@ -21,7 +25,7 @@ typedef struct t_noeud
 {
     char* mot;
     int nb_occurences;
-    t_listePositions positions;
+    t_ListePositions positions;
     t_Noeud* filsGauche;
     t_Noeud* filsDroit;
 }t_noeud;
