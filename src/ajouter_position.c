@@ -1,6 +1,13 @@
 #include "../include/ajouter_position.h"
 #include <stdio.h>
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  ajouter_position
+ *  Description:  
+ * =====================================================================================
+ */
+
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){
 
     t_ListePositions *positionEnCours = listeP;
@@ -28,9 +35,15 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
     }
     else
     {
-        //malloc ajout trivial dans une liste cf TP3
+        t_Position *nouvellePosition = malloc(sizeof(t_Position));
+        nouvellePosition->ligne = ligne;
+        nouvellePosition->ordre = ordre;
+        nouvellePosition->num_phrase = num_phrase;
+        nouvellePosition->suivant=positionEnCours->suivant;
+        positionEnCours->suivant = nouvellePosition;
         printf("La position souhaitée a bien été ajoutée");
         return 1;
     }
     
 }
+
