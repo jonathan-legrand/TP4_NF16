@@ -52,5 +52,4 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
         return 1;
     }
     
-    
 }
