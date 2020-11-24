@@ -2,17 +2,20 @@
 #include <stdio.h>
 
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){
+
     t_ListePositions *positionEnCours = listeP;
     
-    while (ligne>=positionEnCours->ligne)
+    while (positionEnCours->ligne < ligne)
     {
         positionEnCours=positionEnCours->suivant;
     }
-    while (ordre>=positionEnCours->ordre)
+
+    while (positionEnCours->ordre < ordre)
     {
         positionEnCours=positionEnCours->suivant;
     }
-    while (num_phrase>=positionEnCours)
+
+    while (positionEnCours < num_phrase)
     {
         positionEnCours=positionEnCours->suivant;
 
@@ -25,6 +28,7 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
     }
     else
     {
+        //malloc ajout trivial dans une liste cf TP3
         printf("La position souhaitée a bien été ajoutée");
         return 1;
     }
