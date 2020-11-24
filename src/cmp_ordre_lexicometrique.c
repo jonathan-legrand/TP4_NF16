@@ -2,12 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
-int cmp_ordre_lexicometrique (char* chaine1, char* chaine2){
+/*int cmp_ordre_lexicometrique (char* chaine1, char* chaine2){
     int tailleChaine1 = strlen(chaine1);
     int tailleChaine2 = strlen(chaine2);
-
     
-}
+}*/
 
 
 // https://openclassrooms.com/forum/sujet/trier-une-liste-de-mots-par-ordre-alphabetique
