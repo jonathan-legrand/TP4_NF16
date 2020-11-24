@@ -1,7 +1,7 @@
-#include "../include/TP4.h"
 #include <stdio.h>
+#include "../include/creer_liste_positions.h"
 
-t_ListePositions* creer_liste_postions(){
+t_ListePositions* creer_liste_positions(){
     t_ListePositions* myListePositions = malloc(sizeof(t_ListePositions));
     if (!myListePositions)
     {

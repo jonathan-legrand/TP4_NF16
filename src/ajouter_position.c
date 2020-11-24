@@ -1,4 +1,4 @@
-#include "../include/TP4.h"
+#include "../include/ajouter_position.h"
 #include <stdio.h>
 
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){

@@ -3,7 +3,7 @@
 #define creer_liste_positions_H
 #include "../include/structure.h"
 
-t_ListePositions* creer_liste_positions();
+int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase);
 
 
 #endif
