@@ -20,6 +20,7 @@ typedef struct t_listePositions
 }t_listePositions;
 
 typedef struct t_noeud t_Noeud;
+//Je pense que typedef t_noeud t_Noeud suffit, ou alors il faut enlever le typedef dans la déclaration de la structure
 
 typedef struct t_noeud
 {
