@@ -13,7 +13,8 @@
 
 // OPENCLASSROOM
 
-/*
+// FIXME @jonathan-sudo : A modifier pour afficher la sorte de dictionnaire
+/* 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
