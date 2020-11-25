@@ -8,6 +8,12 @@
  * =====================================================================================
  */
 
+// TODO A modifier 
+/**
+ * @brief Crée une liste de positions vide
+ * @return Renvoie la liste, si echec renvoie NULL
+*/
+
 t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
 {
     t_Noeud *noeudEnCours = index->racine;
