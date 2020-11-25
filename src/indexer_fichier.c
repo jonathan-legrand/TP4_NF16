@@ -50,14 +50,16 @@ int indexer_fichier(t_Index *index, char *filename)
     return nbr_mots;
 }
 
- int main(){
-
-    char nomFichier[TAILLE_MAX];
-    int nbr_mots;
-    t_Index* monIndex = malloc(sizeof(t_Index));
-    //t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
-    nbr_mots = indexer_fichier(monIndex, "test.txt");
-    printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots); 
-    return 0;
-}
-
+/*  int main(){
+ * 
+ *     char nomFichier[TAILLE_MAX];
+ *     int nbr_mots;
+ *     t_Index* monIndex = malloc(sizeof(t_Index));
+ *     //t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
+ *     nbr_mots = indexer_fichier(monIndex, "test.txt");
+ *     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots); 
+ *     return 0;
+ * }
+ * 
+ */
+//C'est quoi cet animal?
