@@ -7,7 +7,7 @@
     int tailleChaine2 = strlen(chaine2);
     
 }*/
-
+// testttt
 // test
 // https://openclassrooms.com/forum/sujet/trier-une-liste-de-mots-par-ordre-alphabetique
 

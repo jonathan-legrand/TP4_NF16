@@ -19,7 +19,7 @@ t_Noeud* rechercher_mot(t_Index *index, char *mot){
         cmpChar = strcmp(tolower(noeudEnCours->mot),tolower(mot));
         
         if (cmpChar<0) 
-        // noeudEnCours->mot est lexicalement plus petite que mot
+        // noeudEnCours->mot est lexicalement plus petit que mot
         {
            noeudEnCours = noeudEnCours->filsGauche;
         }

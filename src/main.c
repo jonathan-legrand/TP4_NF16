@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "../include/structure.h"
+//#include "../include/structure.h"
+#include "../include/indexer_fichier.h"
 
-//#include "../include/indexer_fichier.h"
 #define CHARGER_FICHIER 1
 #define CARACTERISTIQUES 2
 #define AFFICHER_INDEX 3
@@ -27,6 +27,7 @@
         char nomFichier[100];
         t_Index* monIndex = malloc(sizeof(t_Index));
         t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
+        int nbr_mots;
     
         do {
 
@@ -52,8 +53,8 @@
                 case CHARGER_FICHIER:
                     printf("Choix 1\n");
                     //printf ("Nom du fichier");
-                    indexer_fichier(monIndex, nomFichier);
-                    break;
+                    nbr_mots = indexer_fichier(monIndex, "test.txt");
+                    printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     break;
 
                 case CARACTERISTIQUES:
                     printf("Choix 2\n");

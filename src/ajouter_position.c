@@ -25,7 +25,7 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
         positionEnCours=positionEnCours->suivant;
     }
 
-    while (positionEnCours < num_phrase) //Petit problème de comparaison ici, c'est pas plutot positionEnCours->numero_phrase ?
+    while (positionEnCours->numero_phrase < num_phrase) 
     {
         positionEnCours=positionEnCours->suivant;
 

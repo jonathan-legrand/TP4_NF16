@@ -1,7 +1,7 @@
 #ne marche pas sur mon windows :(
 #Fais gaffe tu mets des espaces au lieu de mettre des tab
 OBJS = main.o indexer_fichier.o
-HEADERS = ../structure.h ../indexer_fichier.h
+HEADERS = ../include/structure.h ../include/indexer_fichier.h
 
 myapplication : $(OBJS)
 	gcc -o $@ $(OBJS)

@@ -19,18 +19,20 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
     t_Noeud *noeudEnCours = index->racine;
     char *motEnCours;
     while(noeudEnCours != NULL){
-        motEnCours = noeudEnCours->mot; 
-        if (motEnCours == noeud->mot){
+        strcpy(motEnCours,noeudEnCours->mot); 
+        if (!strcmp(motEnCours,noeud->mot)){
             printf("Le mot est déjà présent dans l'abr, rien n'a été ajouté\n");
             return NULL; 
         }
-        if(strcmp(motEnCours,noeud->mot)>=0){
+        else if(strcmp(motEnCours,noeud->mot)>0){
+        // noeudPrecedent->mot est lexicalement plus grand que mot
             if(noeudEnCours->filsDroit == NULL){
                 return(noeudEnCours);
             }
             noeudEnCours = noeudEnCours->filsDroit;
         } else {
-            if(noeudEnCours->filsDroit == NULL){
+        // noeudPrecedent->mot est lexicalement plus petit que mot
+            if(noeudEnCours->filsGauche == NULL){
                 return(noeudEnCours);
             }
             noeudEnCours = noeudEnCours->filsGauche;
@@ -58,10 +60,12 @@ int ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         printf("Erreur lors de l'ajout du noeud\n");
         return !SUCCES;
     }
-    if(strcmp(noeudPrecedent->mot,noeud->mot)>=0){
+    if(strcmp(noeudPrecedent->mot,noeud->mot)>0){
+        // noeudPrecedent->mot est lexicalement plus grand que mot
         noeudPrecedent->filsDroit = noeud;
         return SUCCES;
-    } else {
+    } else if(strcmp(noeudPrecedent->mot,noeud->mot)<0) {
+        // noeudPrecedent->mot est lexicalement plus petit que mot
         noeudPrecedent->filsGauche = noeud;
         return SUCCES;
     }
