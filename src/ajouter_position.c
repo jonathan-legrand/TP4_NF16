@@ -31,7 +31,7 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
 
     }
 
-    if ((ligne==positionEnCours->numero_ligne) && (ordre==positionEnCours->ordre) && (num_phrase==positionEnCours))
+    if ((ligne==positionEnCours->numero_ligne) && (ordre==positionEnCours->ordre) && (num_phrase==positionEnCours->numero_phrase))
     {
         printf("La position souhaitée exite déjà");
         return 0;

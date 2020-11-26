@@ -1,6 +1,17 @@
 #include "../include/rechercher_mot.h"
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
+
+
+
+char * strtolower( char * destination, char * source ) {
+    char *  nouvelleChaine = destination;
+    // on crée une liste supplémenatire car on ne peut pas modifier le pointeur de la chaine à retourner
+    while( *destination++ = tolower( *source++ ) );
+    return nouvelleChaine;
+}
+
 
 /**
  * @brief Rechercher un mot dans un index. 
@@ -12,11 +23,13 @@
 
 t_Noeud* rechercher_mot(t_Index *index, char *mot){
     t_Noeud* noeudEnCours = index->racine;
+    char *nouvChaine = malloc(sizeof(0));
+    char *nouvChaine2 = malloc(sizeof(0));
     int OK = 0;
     int cmpChar;
     while (!OK && noeudEnCours!=NULL)
     {
-        cmpChar = strcmp(tolower(noeudEnCours->mot),tolower(mot));
+        cmpChar = strcmp(strtolower(nouvChaine,noeudEnCours->mot),strtolower(nouvChaine2,mot));
         
         if (cmpChar<0) 
         // noeudEnCours->mot est lexicalement plus petit que mot

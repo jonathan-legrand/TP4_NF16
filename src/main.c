@@ -2,6 +2,12 @@
 #include <stdio.h>
 //#include "../include/structure.h"
 #include "../include/indexer_fichier.h"
+#include "../include/ajouter_noeud.h"
+#include "../include/ajouter_position.h"
+#include "../include/creer_liste_positions.h"
+#include "../include/rechercher_mot.h"
+
+
 
 #define CHARGER_FICHIER 1
 #define CARACTERISTIQUES 2
@@ -26,7 +32,6 @@
         int choix;
         char nomFichier[100];
         t_Index* monIndex = malloc(sizeof(t_Index));
-        t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
         int nbr_mots;
     
         do {

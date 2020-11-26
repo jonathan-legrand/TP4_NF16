@@ -1,7 +1,7 @@
 #include "../include/indexer_fichier.h"
 #include <stdio.h>
 #include <string.h>
-#define TAILLE_MAX 200
+#define TAILLE_MAX 1000
 
 /**
  * @brief Indexer un fichier texte.
@@ -13,9 +13,11 @@
 int indexer_fichier(t_Index *index, char *filename)
 {
     t_Noeud* noeud=malloc(sizeof(t_Noeud));
+    noeud->mot = malloc(sizeof(0));
     char ligne[TAILLE_MAX];
     const char * separateurs = "\n .";
     char * strToken;
+    
     int nbr_mots = 0;
 
     FILE *fptxt;
@@ -33,12 +35,14 @@ int indexer_fichier(t_Index *index, char *filename)
             
             while ( strToken != NULL ) {
                 strcpy(noeud->mot,strToken);
-                printf("%s\n",noeud->mot);  //TODO Supprimer
-
+                //printf("%s\n",noeud->mot);  //TODO Supprimer
+                
                 //ajouter_noeud(index,noeud); 
                 
                 nbr_mots++;
+                //printf("%s\n",strToken);  //TODO Supprimer
 
+                noeud->mot = malloc(0); // libération
                 // On demande le token suivant.
                 strToken = strtok ( NULL, separateurs );
             }
@@ -50,14 +54,14 @@ int indexer_fichier(t_Index *index, char *filename)
     return nbr_mots;
 }
 
- int main(){
+ /*int main(){
  
-     char nomFichier[TAILLE_MAX];
+     char nomFichier[100];
     int nbr_mots;
     t_Index* monIndex = malloc(sizeof(t_Index));
     //t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
      nbr_mots = indexer_fichier(monIndex, "test.txt");
      printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots); 
      return 0;
- }
+ }*/
  
