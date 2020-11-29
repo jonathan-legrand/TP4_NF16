@@ -15,8 +15,10 @@
  * @return Revoie le nombre de mots lus
  */
 
+
 int indexer_fichier(t_Index *index, char *filename)
 {
+    printf("teeeeest\n");
     t_Noeud* noeud=malloc(sizeof(t_Noeud));
     noeud->mot = malloc(sizeof(0));
     t_ListePositions* maListePositions = creer_liste_positions();
@@ -48,13 +50,13 @@ int indexer_fichier(t_Index *index, char *filename)
             //TODO update le num_phrase (complexe vu que je supprime les points...)
             while ( strToken != NULL ) {
                 strcpy(noeud->mot,strToken);
-                //printf("%s\n",noeud->mot);  //TODO Supprimer
+                printf("%s\n",noeud->mot);  //TODO Supprimer
                 ordre ++;
-                ajout_noeud = ajouter_noeud(index,noeud); 
-                if (!ajout_noeud) //FIXME je ne veux gérer que le cas correspondant au noeud deja "existant"
+                //ajout_noeud = ajouter_noeud(index,noeud); 
+                /*if (!ajout_noeud) //FIXME je ne veux gérer que le cas correspondant au noeud deja "existant"
                 {
                     ajouter_position(maListePositions,num_ligne,ordre,num_phrase);
-                }
+                }*/
                 
                 nbr_mots++;
                 //printf("%s\n",strToken);  //TODO Supprimer
@@ -65,9 +67,10 @@ int indexer_fichier(t_Index *index, char *filename)
             }
             ordre = 0;
         }
-        
+
+        fclose(fptxt);
     }
-    fclose(fptxt);
+
     return nbr_mots;
 }
 // 

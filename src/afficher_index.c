@@ -7,7 +7,6 @@
 char *str_sub (const char *s, unsigned int start, unsigned int end)
 {
    char *new_s = NULL;
-
    if (s != NULL && start < end)
    {
 /* (1)*/
@@ -78,6 +77,7 @@ parcours_arbre ( t_Noeud *noeud, char lettre )
  */
 void afficher_index ( t_Index *index )
 {
+    printf("teeeeest");
     t_Noeud *abr = index->racine;
     if (abr == NULL){
         printf("Erreur : index vide\n");

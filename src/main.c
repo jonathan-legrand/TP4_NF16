@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-//#include "../include/structure.h"
+#include "../include/structure.h"
 #include "../include/indexer_fichier.h"
 #include "../include/ajouter_noeud.h"
 #include "../include/ajouter_position.h"
@@ -31,7 +31,7 @@
     {
 
         int choix;
-        char nomFichier[100];
+        char nomFichier[20];
         t_Index* monIndex = malloc(sizeof(t_Index));
         int nbr_mots;
     
@@ -51,15 +51,17 @@
             fflush(stdin);
             printf("\nVotre choix ? ");
             scanf("%d",&choix);
-
+            fflush(stdin);
             /* suppression des caracteres dans stdin */
 
             switch(choix)
             {
                 case CHARGER_FICHIER:
                     printf("Choix 1\n");
-                    //printf ("Nom du fichier");
-                    nbr_mots = indexer_fichier(monIndex, "test.txt");
+                    printf ("Nom du fichier : ");
+                    fflush(stdin);
+                    scanf("%s",nomFichier);
+                    nbr_mots = indexer_fichier(monIndex, nomFichier);
                     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     
                     break;
                     
