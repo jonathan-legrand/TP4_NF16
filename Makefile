@@ -3,13 +3,14 @@ SRC = src/*.c
 OBJ = $(SRC:.c=.o)
 CC = gcc
 EXEC = abr
+CFLAGS=-W -Wall -pedantic
 
 
 all: $(EXEC)
 	
 
-abr:
-	$(CC) $(SRC) -o bin/$@
+abr: $(HEADERS)
+	$(CC) $(SRC) -o bin/$@ $(CFLAGS)
 
 clean:
 	rm -f *.o
