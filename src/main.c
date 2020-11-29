@@ -6,6 +6,7 @@
 #include "../include/ajouter_position.h"
 #include "../include/creer_liste_positions.h"
 #include "../include/rechercher_mot.h"
+#include "../include/afficher_index.h"
 
 
 
@@ -59,7 +60,9 @@
                     printf("Choix 1\n");
                     //printf ("Nom du fichier");
                     nbr_mots = indexer_fichier(monIndex, "test.txt");
-                    printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     break;
+                    printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     
+                    break;
+                    
 
                 case CARACTERISTIQUES:
                     printf("Choix 2\n");
@@ -67,6 +70,9 @@
 
                 case AFFICHER_INDEX:
                     printf("Choix 3\n");
+                    
+                    afficher_index(monIndex);
+                    
                     break;
 
                 case RECHERCHER:

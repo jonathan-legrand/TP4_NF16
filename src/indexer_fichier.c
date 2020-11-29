@@ -70,18 +70,18 @@ int indexer_fichier(t_Index *index, char *filename)
     fclose(fptxt);
     return nbr_mots;
 }
-
- int main(){
- 
-    char nomFichier[100];
-    int nbr_mots;
-    t_Index* monIndex = malloc(sizeof(t_Index));
-    //t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
-     nbr_mots = indexer_fichier(monIndex, "test.txt");
-     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots); 
-     return 0;
- }
- 
+// 
+// int main(){
+// 
+//    char nomFichier[100];
+//    int nbr_mots;
+//    t_Index* monIndex = malloc(sizeof(t_Index));
+//    //t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
+//     nbr_mots = indexer_fichier(monIndex, "test.txt");
+//     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots); 
+//     return 0;
+// }
+// 
 //gcc indexer_fichier.c -o indexer_fichier
 //./indexer_fichier
  
