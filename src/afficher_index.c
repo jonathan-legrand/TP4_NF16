@@ -2,7 +2,7 @@
 #include "../include/rechercher_mot.h"
 
 //TODO : mettre à jour le header
-//TODO : Rassembler les fonctions pour manipuler les chaines dans un fichier qu'on pourra include où on veut
+//TODO : Rassembler les fonctions pour manipuler les chaines dans un fichier qu'on pourra inclure où on veut
 
 char *str_sub (const char *s, unsigned int start, unsigned int end)
 {
@@ -43,7 +43,7 @@ void
 afficher_noeud ( t_Noeud *noeud, char lettre )
 {
     char *lettreNoeud;
-    str_sub(lettreNoeud,0,1);
+    strcpy(lettreNoeud,str_sub(noeud->mot,0,1));
     if (*lettreNoeud == lettre){
         printf("|-- %s\n",noeud->mot);
     }
