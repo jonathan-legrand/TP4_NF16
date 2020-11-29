@@ -2,23 +2,73 @@
 #include "../include/rechercher_mot.h"
 
 //TODO : mettre à jour le header
+//TODO : Rassembler les fonctions pour manipuler les chaines dans un fichier qu'on pourra include où on veut
+
+char *str_sub (const char *s, unsigned int start, unsigned int end)
+{
+   char *new_s = NULL;
+
+   if (s != NULL && start < end)
+   {
+/* (1)*/
+      new_s = malloc (sizeof (*new_s) * (end - start + 2));
+      if (new_s != NULL)
+      {
+         int i;
+
+/* (2) */
+         for (i = start; i <= end; i++)
+         {
+/* (3) */
+            new_s[i-start] = s[i];
+         }
+         new_s[i-start] = '\0';
+      }
+      else
+      {
+         fprintf (stderr, "Memoire insuffisante\n");
+         exit (EXIT_FAILURE);
+      }
+   }
+   return new_s;
+}
+
 /* 
  * ===  FUNCTION  ======================================================================
- *         Name:  afficher_arbre
+ *         Name:  afficher_noeud
+ *  Description:  
+ * =====================================================================================
+ */
+void
+afficher_noeud ( t_Noeud *noeud, char lettre )
+{
+    char *lettreNoeud;
+    str_sub(lettreNoeud,0,1);
+    if (*lettreNoeud == lettre){
+        printf("|-- %s\n",noeud->mot);
+    }
+
+}		/* -----  end of function afficher_noeud  ----- */
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  parcours_arbre
  *  Description:  
  * =====================================================================================
  */
     void
-afficher_arbre ( t_Noeud *noeud )
+parcours_arbre ( t_Noeud *noeud, char lettre )
 {
     if(noeud == NULL){
         return;
     }
-    afficher_arbre(noeud->filsGauche);
-    printf("%s",noeud->mot);
-    afficher_arbre(noeud->filsDroit);
+    parcours_arbre(noeud->filsGauche, lettre);
+    //printf("%s",noeud->mot);
+    afficher_noeud(noeud, lettre);
+    parcours_arbre(noeud->filsDroit, lettre);
     
-}		/* -----  end of function afficher_arbre  ----- */
+}		/* -----  end of function parcours_arbre  ----- */
 
 /* 
  * ===  FUNCTION  ======================================================================
@@ -39,7 +89,11 @@ void afficher_index ( t_Index *index )
  * 
  *     }
  */
-    afficher_arbre(abr);
+    
+    for ( char i = 'a'; i <= 'z'; i ++ ) {
+        printf("%c",i);
+        parcours_arbre(abr,i);
+    }
 
     
 }		/* -----  end of function afficher_index  ----- */
