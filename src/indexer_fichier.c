@@ -15,13 +15,27 @@
  * @return Revoie le nombre de mots lus
  */
 
+t_Index* creer_index(){
+    t_Index* mon_nouveau_index = malloc(sizeof(t_Index));
+    if (!mon_nouveau_index)
+    {
+        return NULL;
+    }
+    
+    // mon_nouveau_index->racine=malloc(sizeof(t_Noeud)); // FIXME DOUTE
+    mon_nouveau_index->racine = NULL; // FIXME DOUTE
+    mon_nouveau_index->nb_mots_differents=0;
+    mon_nouveau_index->nb_mots_total=0;
+    return mon_nouveau_index;
+}
 
 int indexer_fichier(t_Index *index, char *filename)
 {
-    printf("teeeeest\n");
+    
+    //index->racine->mot=malloc(sizeof(0));
     t_Noeud* noeud=malloc(sizeof(t_Noeud));
-    noeud->mot = malloc(sizeof(0));
-    t_ListePositions* maListePositions = creer_liste_positions();
+    noeud->mot= malloc(sizeof(0));
+    //t_ListePositions* maListePositions = creer_liste_positions();
     // TODO association avec noeud -> position ?
 
     char ligne[TAILLE_MAX];
@@ -48,22 +62,40 @@ int indexer_fichier(t_Index *index, char *filename)
             strToken = strtok (ligne,separateurs);
             num_ligne++;
             //TODO update le num_phrase (complexe vu que je supprime les points...)
-            while ( strToken != NULL ) {
-                strcpy(noeud->mot,strToken);
-                printf("%s\n",noeud->mot);  //TODO Supprimer
+            
+            while (strToken != NULL) {
+                if (index->racine!=NULL)
+                {
+                    printf("\nLa racine3 est %s\n",index->racine->mot); //TODO Supprimer
+                }
+                //noeud->mot = malloc(0); // libération
+                strcpy(noeud->mot,strToken); // FIXME Le fait de modifier le noeud-> mot cela modifie l'indexe racine.
+                printf("Le mot lu est %s\n",noeud->mot);  //TODO Supprimer
                 ordre ++;
-                //ajout_noeud = ajouter_noeud(index,noeud); 
+
+                if (index->racine!=NULL)
+                {
+                    printf("\nLa racine est de mon arbre est %s\n",index->racine->mot); //TODO Supprimer
+
+                }
+
+                
+                ajout_noeud = ajouter_noeud(index,noeud);
+                printf("\nLa racine est %s\n",index->racine->mot); //TODO Supprimer
+
                 /*if (!ajout_noeud) //FIXME je ne veux gérer que le cas correspondant au noeud deja "existant"
                 {
                     ajouter_position(maListePositions,num_ligne,ordre,num_phrase);
                 }*/
-                
                 nbr_mots++;
                 //printf("%s\n",strToken);  //TODO Supprimer
-
-                noeud->mot = malloc(0); // libération
+                printf("\nLa racine0 est %s\n",index->racine->mot); //TODO Supprimer
+                //noeud->mot = malloc(0); // FIXME Problème modifie la racine
                 // On demande le token suivant.
+                printf("\nLa racine1 est %s\n",index->racine->mot); //TODO Supprimer
                 strToken = strtok ( NULL, separateurs );
+                printf("\nLa racine2 est %s\n",index->racine->mot); //TODO Supprimer
+
             }
             ordre = 0;
         }

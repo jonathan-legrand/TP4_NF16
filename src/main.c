@@ -32,7 +32,7 @@
 
         int choix;
         char nomFichier[20];
-        t_Index* monIndex = malloc(sizeof(t_Index));
+        t_Index* monIndex = creer_index();
         int nbr_mots;
     
         do {
@@ -58,10 +58,10 @@
             {
                 case CHARGER_FICHIER:
                     printf("Choix 1\n");
-                    printf ("Nom du fichier : ");
+                    /*printf ("Nom du fichier : ");
                     fflush(stdin);
-                    scanf("%s",nomFichier);
-                    nbr_mots = indexer_fichier(monIndex, nomFichier);
+                    scanf("%s",nomFichier);*/
+                    nbr_mots = indexer_fichier(monIndex, "fichier.txt");
                     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     
                     break;
                     
