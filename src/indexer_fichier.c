@@ -64,24 +64,24 @@ int indexer_fichier(t_Index *index, char *filename)
             //TODO update le num_phrase (complexe vu que je supprime les points...)
             
             while (strToken != NULL) {
-                if (index->racine!=NULL)
+                /*if (index->racine!=NULL)
                 {
                     printf("\nLa racine3 est %s\n",index->racine->mot); //TODO Supprimer
-                }
+                }*/
                 //noeud->mot = malloc(0); // libération
                 strcpy(noeud->mot,strToken); // FIXME Le fait de modifier le noeud-> mot cela modifie l'indexe racine.
                 printf("Le mot lu est %s\n",noeud->mot);  //TODO Supprimer
                 ordre ++;
 
-                if (index->racine!=NULL)
+                /*if (index->racine!=NULL)
                 {
                     printf("\nLa racine est de mon arbre est %s\n",index->racine->mot); //TODO Supprimer
 
-                }
+                }*/
 
                 
                 ajout_noeud = ajouter_noeud(index,noeud);
-                printf("\nLa racine est %s\n",index->racine->mot); //TODO Supprimer
+                //printf("\nLa racine est %s\n",index->racine->mot); //TODO Supprimer
 
                 /*if (!ajout_noeud) //FIXME je ne veux gérer que le cas correspondant au noeud deja "existant"
                 {
@@ -89,12 +89,12 @@ int indexer_fichier(t_Index *index, char *filename)
                 }*/
                 nbr_mots++;
                 //printf("%s\n",strToken);  //TODO Supprimer
-                printf("\nLa racine0 est %s\n",index->racine->mot); //TODO Supprimer
+                //printf("\nLa racine0 est %s\n",index->racine->mot); //TODO Supprimer
                 //noeud->mot = malloc(0); // FIXME Problème modifie la racine
                 // On demande le token suivant.
-                printf("\nLa racine1 est %s\n",index->racine->mot); //TODO Supprimer
+                //printf("\nLa racine1 est %s\n",index->racine->mot); //TODO Supprimer
                 strToken = strtok ( NULL, separateurs );
-                printf("\nLa racine2 est %s\n",index->racine->mot); //TODO Supprimer
+                //printf("\nLa racine2 est %s\n",index->racine->mot); //TODO Supprimer
 
             }
             ordre = 0;

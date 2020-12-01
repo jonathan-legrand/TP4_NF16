@@ -1,4 +1,6 @@
 #include "../include/ajouter_noeud.h"
+#include "../include/rechercher_mot.h" //TODO a supprimer
+
 #define SUCCES 1
 
 /* 
@@ -14,33 +16,41 @@
  * @return Renvoie la liste, si echec renvoie NULL
 */
 
+
 //FIXME Faut - il modifier la racine ou pas ?
 t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
 {
+    char *nouvChaine = malloc(sizeof(0));
+    char *nouvChaine2 = malloc(sizeof(0));
     t_Noeud *noeudEnCours = index->racine;
-    printf("\n%s\n",index->racine->mot);
-    char *motEnCours=malloc(sizeof(0));
-    printf("\ncoucou4\n"); // TODO Supprimer
+    printf("\nla racine : %s",index->racine->mot);
+    char *motEnCours=NULL;
+    int cmpChar;
+    //printf("\ncoucou4"); // TODO Supprimer
     while(noeudEnCours != NULL){
-        printf("\ncoucou5\n"); // TODO Supprimer
+        printf("\ncoucou5"); // TODO Supprimer
         //strcpy(motEnCours,noeudEnCours->mot); // FIXME ATTENTION REMPALCEMENT bon ou pas ?
-        printf("\nLe mot en cours est %s\n",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
-        printf("\nLe mot à chercher est %s\n",noeud->mot);
-        printf("\ncoucou6\n"); // TODO Supprimer
-        if (!strcmp(noeudEnCours->mot,noeud->mot)){
+        
+        printf("\nLe mot en cours est %s",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
+        printf("\nLe mot à chercher est %s",noeud->mot);
+
+        cmpChar = strcmp(strtolower(nouvChaine,noeudEnCours->mot),strtolower(nouvChaine2,noeud->mot));
+        //printf("\ncoucou6"); // TODO Supprimer
+        if (!cmpChar){
             printf("Le mot est déjà présent dans l'abr, rien n'a été ajouté\n");
             return NULL; 
         }
-        else if(strcmp(noeud->mot,noeudEnCours->mot)>0){ //FIXME j'ai inversé demander confirmation ???
-        // noeud->mot est lexicalement plus grand que noeudEnCours->mot
+        else if(cmpChar<0){  //FIXME TOLOWER
+        // noeudEnCours->mot est lexicalement plus petit que noeud->mot
             if(noeudEnCours->filsDroit == NULL){
                 printf("\nfils droit null");
                 return(noeudEnCours);
             }
-            printf("\nnfils droit non null");
+            printf("\nfils droit non null\n");
+            printf("Fils droit : %s\n",noeudEnCours->filsDroit->mot);
             noeudEnCours = noeudEnCours->filsDroit;
-        } else if(strcmp(noeud->mot,noeudEnCours->mot)<0){ //FIXME j'ai inversé demander confirmation ???
-        // noeud->mot est lexicalement plus petit que noeudEnCours->mot
+        } else if(cmpChar>0){
+        // noeudEnCours->mot est lexicalement plus grand que noeud->mot
             if(noeudEnCours->filsGauche == NULL){
                 printf("\nfils gauche null");
                 return(noeudEnCours);
@@ -48,8 +58,8 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
             printf("\nfils gauche non null");
             noeudEnCours = noeudEnCours->filsGauche;
         }
-        printf("\nfin: Le mot en cours sera %s\n",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
-        printf("\nfin: Le mot à chercher était %s\n",noeud->mot);
+        printf("\n fin itér: Le mot en cours sera %s",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
+        printf("\n fin itér: Le mot à chercher est %s",noeud->mot);
         //motEnCours=malloc(0); // FIXME UTILE OU PAS ?
     }
     return noeudEnCours;

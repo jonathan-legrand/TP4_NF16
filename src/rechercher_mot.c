@@ -34,7 +34,7 @@ t_Noeud* rechercher_mot(t_Index *index, char *mot){
         if (cmpChar<0) 
         // noeudEnCours->mot est lexicalement plus petit que mot
         {
-           noeudEnCours = noeudEnCours->filsDroit; // FIXME Modif droit gauche vérification ???
+           noeudEnCours = noeudEnCours->filsDroit; 
         }
         else if (cmpChar>0)
         // noeudEnCours->mot est lexicalement plus grand que mot
