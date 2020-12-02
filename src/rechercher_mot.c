@@ -1,16 +1,6 @@
 #include "../include/rechercher_mot.h"
+#include "../include/chaines.h"
 #include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-
-
-
-char * strtolower( char * destination, char * source ) {
-    char *  nouvelleChaine = destination;
-    // on crée une liste supplémenatire car on ne peut pas modifier le pointeur de la chaine à retourner
-    while( *destination++ = tolower( *source++ ) );
-    return nouvelleChaine;
-}
 
 
 /**
@@ -19,7 +9,7 @@ char * strtolower( char * destination, char * source ) {
  * Donc il faut appliquer l'algorithme connu de recherche dans un ABR.
  * @param mot le mot recherché
  * @return Renvoie, si le mot existe, le noeud correspondant, sinon renvoie NULL
-*/
+ */
 
 t_Noeud* rechercher_mot(t_Index *index, char *mot){
     t_Noeud* noeudEnCours = index->racine;
@@ -30,14 +20,14 @@ t_Noeud* rechercher_mot(t_Index *index, char *mot){
     while (!OK && noeudEnCours!=NULL)
     {
         cmpChar = strcmp(strtolower(nouvChaine,noeudEnCours->mot),strtolower(nouvChaine2,mot));
-        
+
         if (cmpChar<0) 
-        // noeudEnCours->mot est lexicalement plus petit que mot
+            // noeudEnCours->mot est lexicalement plus petit que mot
         {
-           noeudEnCours = noeudEnCours->filsDroit; 
+            noeudEnCours = noeudEnCours->filsDroit; 
         }
         else if (cmpChar>0)
-        // noeudEnCours->mot est lexicalement plus grand que mot
+            // noeudEnCours->mot est lexicalement plus grand que mot
         {
             noeudEnCours = noeudEnCours->filsGauche;
         }

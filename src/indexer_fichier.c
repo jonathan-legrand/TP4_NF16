@@ -70,7 +70,8 @@ int indexer_fichier(t_Index *index, char *filename)
                 }*/
                 //noeud->mot = malloc(0); // libération
                 strcpy(noeud->mot,strToken); // FIXME Le fait de modifier le noeud-> mot cela modifie l'indexe racine.
-                printf("Le mot lu est %s\n",noeud->mot);  //TODO Supprimer
+                //printf("Le mot lu est %s\n",noeud->mot);  //TODO Supprimer
+
                 ordre ++;
 
                 /*if (index->racine!=NULL)

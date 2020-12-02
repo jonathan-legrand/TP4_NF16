@@ -1,6 +1,5 @@
 #include "../include/ajouter_noeud.h"
-#include "../include/rechercher_mot.h" //TODO a supprimer
-
+#include "../include/chaines.h"
 #define SUCCES 1
 
 /* 
@@ -14,7 +13,7 @@
 /**
  * @brief Crée une liste de positions vide
  * @return Renvoie la liste, si echec renvoie NULL
-*/
+ */
 
 
 //FIXME Faut - il modifier la racine ou pas ?
@@ -30,7 +29,7 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
     while(noeudEnCours != NULL){
         printf("\ncoucou5"); // TODO Supprimer
         //strcpy(motEnCours,noeudEnCours->mot); // FIXME ATTENTION REMPALCEMENT bon ou pas ?
-        
+
         printf("\nLe mot en cours est %s",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
         printf("\nLe mot à chercher est %s",noeud->mot);
 
@@ -41,7 +40,7 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
             return NULL; 
         }
         else if(cmpChar<0){  //FIXME TOLOWER
-        // noeudEnCours->mot est lexicalement plus petit que noeud->mot
+            // noeudEnCours->mot est lexicalement plus petit que noeud->mot
             if(noeudEnCours->filsDroit == NULL){
                 printf("\nfils droit null");
                 return(noeudEnCours);
@@ -50,7 +49,7 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
             printf("Fils droit : %s\n",noeudEnCours->filsDroit->mot);
             noeudEnCours = noeudEnCours->filsDroit;
         } else if(cmpChar>0){
-        // noeudEnCours->mot est lexicalement plus grand que noeud->mot
+            // noeudEnCours->mot est lexicalement plus grand que noeud->mot
             if(noeudEnCours->filsGauche == NULL){
                 printf("\nfils gauche null");
                 return(noeudEnCours);
@@ -86,7 +85,7 @@ int ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         printf("\ncoucou2\n"); // TODO Supprimer
         //index->racine->mot=malloc(strlen(noeud->mot));
         /*index->racine=noeud;
-        strcpy(index->racine->mot,noeud->mot);*/
+          strcpy(index->racine->mot,noeud->mot);*/
         index->racine=malloc(sizeof(t_Noeud));
         // it's a deep copy
         memcpy (index->racine, noeud, sizeof (*(index->racine)));
@@ -96,31 +95,26 @@ int ajouter_noeud ( t_Index *index, t_Noeud *noeud)
     }
 
     else
-    {
-            printf("\n La valeur de la racine est %s\n",index->racine->mot); // TODO Supprimer
-            printf("\ncoucou3\n"); // TODO Supprimer
-            t_Noeud *noeudPrecedent = rechercher_noeud(index,noeud);
+        printf("\n La valeur de la racine est %s\n",index->racine->mot); // TODO Supprimer
+    printf("\ncoucou3\n"); // TODO Supprimer
+    t_Noeud *noeudPrecedent = rechercher_noeud(index,noeud);
 
-            if (noeudPrecedent == NULL){
-                printf("Erreur lors de l'ajout du noeud\n");
-                return !SUCCES;
-            }
-            if(strcmp(noeud->mot,noeudPrecedent->mot)>0){  //FIXME j'ai inversé demander confirmation ???
-                // noeudPrecedent->mot est lexicalement plus grand que mot
-                noeudPrecedent->filsDroit = noeud;
-                printf("\nLe noeud a bien été ajouté");
-                return SUCCES;
-            }
-            else if(strcmp(noeud->mot,noeudPrecedent->mot)<0) {  //FIXME j'ai inversé demander confirmation ???
-                // noeud->mot est lexicalement plus petit que noeudPrecedent->mot
-                printf("\nLe noeud a bien été ajouté");
-                noeudPrecedent->filsGauche = noeud;
-                return SUCCES;
-            }
+    if (noeudPrecedent == NULL){
+        printf("Erreur lors de l'ajout du noeud\n");
+        return !SUCCES;
     }
-    
-return SUCCES;
- 
+    if(strcmp(noeud->mot,noeudPrecedent->mot)>0){  //FIXME j'ai inversé demander confirmation ???
+        // noeudPrecedent->mot est lexicalement plus grand que mot
+        noeudPrecedent->filsDroit = noeud;
+        printf("\nLe noeud a bien été ajouté");
+        return SUCCES;
+    }
+    else if(strcmp(noeud->mot,noeudPrecedent->mot)<0) {  //FIXME j'ai inversé demander confirmation ???
+        // noeud->mot est lexicalement plus petit que noeudPrecedent->mot
+        printf("\nLe noeud a bien été ajouté");
+        noeudPrecedent->filsGauche = noeud;
+        return SUCCES;
+    }
 }		/* -----  end of function ajouter_noeud  ----- */
 
 
