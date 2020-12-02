@@ -69,6 +69,9 @@ int indexer_fichier(t_Index *index, char *filename)
                     printf("\nLa racine3 est %s\n",index->racine->mot); //TODO Supprimer
                 }*/
                 //noeud->mot = malloc(0); // libération
+                if (index->racine!=NULL && index->racine->filsDroit!=NULL)
+                    printf("je suis dans index avant le strcpy, le mot ajouté précédement : %s\n",index->racine->filsDroit->mot);
+                
                 strcpy(noeud->mot,strToken); // FIXME Le fait de modifier le noeud-> mot cela modifie l'indexe racine.
                 //printf("Le mot lu est %s\n",noeud->mot);  //TODO Supprimer
 
@@ -79,9 +82,13 @@ int indexer_fichier(t_Index *index, char *filename)
                     printf("\nLa racine est de mon arbre est %s\n",index->racine->mot); //TODO Supprimer
 
                 }*/
+                 if (index->racine!=NULL && index->racine->filsDroit!=NULL)
+                    printf("je suis dans index après le strcpy le mot ajouté précédement : %s\n",index->racine->filsDroit->mot);
+                
 
                 
                 ajout_noeud = ajouter_noeud(index,noeud);
+               
                 //printf("\nLa racine est %s\n",index->racine->mot); //TODO Supprimer
 
                 /*if (!ajout_noeud) //FIXME je ne veux gérer que le cas correspondant au noeud deja "existant"

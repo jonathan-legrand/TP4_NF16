@@ -61,7 +61,7 @@
                     /*printf ("Nom du fichier : ");
                     fflush(stdin);
                     scanf("%s",nomFichier);*/
-                    nbr_mots = indexer_fichier(monIndex, "fichier.txt");
+                    nbr_mots = indexer_fichier(monIndex, "fichier2.txt");
                     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     
                     break;
                     
