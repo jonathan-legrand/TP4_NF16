@@ -32,7 +32,7 @@
 
         int choix;
         char nomFichier[20];
-        t_Index* monIndex = creer_index();
+        t_Index* monIndex = creer_index(); 
         int nbr_mots;
     
         do {

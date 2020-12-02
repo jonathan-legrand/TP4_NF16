@@ -45,7 +45,7 @@ int indexer_fichier(t_Index *index, char *filename)
 
     int nbr_mots = 0;
     int num_ligne = 0;
-    int num_phrase = 0;
+    //int num_phrase = 0; non utilisé
     int ordre = 0;
 
     FILE *fptxt;

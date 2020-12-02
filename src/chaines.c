@@ -10,7 +10,7 @@ char *str_sub (const char *s, unsigned int start, unsigned int end)
         new_s = malloc (sizeof (*new_s) * (end - start + 2));
         if (new_s != NULL)
         {
-            int i;
+            unsigned int i;
 
             /* (2) */
             for (i = start; i <= end; i++)

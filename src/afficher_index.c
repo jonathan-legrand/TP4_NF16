@@ -14,7 +14,7 @@
 void
 afficher_noeud ( t_Noeud *noeud, char lettre )
 {
-    char *lettreNoeud;
+    char *lettreNoeud; //FIXME Pas testé mais je le sens mal
     strcpy(lettreNoeud,str_sub(noeud->mot,0,1));
     if (*lettreNoeud == lettre){
         printf("|-- %s\n",noeud->mot);

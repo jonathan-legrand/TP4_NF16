@@ -23,7 +23,7 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
     char *nouvChaine2 = malloc(sizeof(0));
     t_Noeud *noeudEnCours = index->racine;
     printf("\nla racine : %s",index->racine->mot);
-    char *motEnCours=NULL;
+    //char *motEnCours=NULL; Non utilisé
     int cmpChar;
     //printf("\ncoucou4"); // TODO Supprimer
     while(noeudEnCours != NULL){
@@ -115,6 +115,7 @@ int ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         noeudPrecedent->filsGauche = noeud;
         return SUCCES;
     }
+    return !SUCCES;
 }		/* -----  end of function ajouter_noeud  ----- */
 
 
