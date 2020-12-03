@@ -14,9 +14,7 @@
 void
 afficher_noeud ( t_Noeud *noeud, char lettre )
 {
-    char *lettreNoeud; //FIXME Pas testé mais je le sens mal
-    strcpy(lettreNoeud,str_sub(noeud->mot,0,1));
-    if (*lettreNoeud == lettre){
+    if (noeud->mot[0] == lettre){
         printf("|-- %s\n",noeud->mot);
     }
 
@@ -50,7 +48,7 @@ parcours_arbre ( t_Noeud *noeud, char lettre )
  */
 void afficher_index ( t_Index *index )
 {
-    printf("teeeeest");
+    printf("teeeeest\n");
     t_Noeud *abr = index->racine;
     if (abr == NULL){
         printf("Erreur : index vide\n");
@@ -64,7 +62,7 @@ void afficher_index ( t_Index *index )
  */
     
     for ( char i = 'a'; i <= 'z'; i ++ ) {
-        printf("%c",i);
+        //printf("%c",i);
         parcours_arbre(abr,i);
     }
 
