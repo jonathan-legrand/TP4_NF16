@@ -1,11 +1,10 @@
-//FIXME Problème de linker
 #include "../include/indexer_fichier.h"
 #include "../include/ajouter_noeud.h"
 #include "../include/ajouter_position.h"
 #include "../include/creer_liste_positions.h"
+#include "../include/chaines.h"
 
 #include <stdio.h>
-#include <string.h>
 #define TAILLE_MAX 1000
 
 /**
