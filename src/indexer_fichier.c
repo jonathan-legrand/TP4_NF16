@@ -36,18 +36,20 @@ int indexer_fichier(t_Index *index, char *filename)
     t_Noeud* noeud=malloc(sizeof(t_Noeud));
     noeud->mot= malloc(sizeof(0));
     //t_ListePositions* maListePositions = creer_liste_positions();
+    //index->racine->positions = *creer_liste_positions();
+
+    ;
     // TODO association avec noeud -> position ?
 
-    char ligne[TAILLE_MAX];
-    const char * separateurs = "\n .";
-    char * strToken;
     int ajout_noeud;
 
     int nbr_mots = 0;
     int num_ligne = 0;
-    //int num_phrase = 0; non utilisé
+    int num_phrase = 0;
     int ordre = 0;
-
+    char ch;
+    int in_word; // flag : si le charactere n'est pas un espace on met le flag à 1
+    int nb_char_mot = 0;
     FILE *fptxt;
     fptxt=fopen(filename,"r");
 
@@ -57,74 +59,53 @@ int indexer_fichier(t_Index *index, char *filename)
     }
     else
     {
-        while (fgets(ligne,TAILLE_MAX,fptxt)!=NULL){
-            //printf("\nLigne\n\n"); //TODO Supprimer
-            strToken = strtok (ligne,separateurs);
-            num_ligne++;
-            //TODO update le num_phrase (complexe vu que je supprime les points...)
+        while ((ch = fgetc(fptxt)) != EOF) {
+        
+        if (isalnum(ch))
+        {   
+            //printf("Carac : %c\n",ch);
+            *(noeud->mot + nb_char_mot)=ch;
+            nb_char_mot++;
+        }
+        else
+        {
+            //printf("Carac non alphanum : %c\n",ch);
+        }
+        
+        if(ch == ' ' || ch == '\0' || ch == '\n'|| ch=='.') {
             
-            while (strToken != NULL) {
-                /*if (index->racine!=NULL)
-                {
-                    printf("\nLa racine3 est %s\n",index->racine->mot); //TODO Supprimer
-                }*/
-                //noeud->mot = malloc(0); // libération
-                if (index->racine!=NULL && index->racine->filsDroit!=NULL)
-                    printf("je suis dans index avant le strcpy, le mot ajouté précédement : %s\n",index->racine->filsDroit->mot);
-                
-                strcpy(noeud->mot,strToken); // FIXME Le fait de modifier le noeud-> mot cela modifie l'indexe racine.
-                //printf("Le mot lu est %s\n",noeud->mot);  //TODO Supprimer
+            if (in_word) {
 
-                ordre ++;
-
-                /*if (index->racine!=NULL)
-                {
-                    printf("\nLa racine est de mon arbre est %s\n",index->racine->mot); //TODO Supprimer
-
-                }*/
-                 if (index->racine!=NULL && index->racine->filsDroit!=NULL)
-                    printf("je suis dans index après le strcpy le mot ajouté précédement : %s\n",index->racine->filsDroit->mot);
-                
-
-                
-                ajout_noeud = ajouter_noeud(index,noeud);
-               
-                //printf("\nLa racine est %s\n",index->racine->mot); //TODO Supprimer
-
-                /*if (!ajout_noeud) //FIXME je ne veux gérer que le cas correspondant au noeud deja "existant"
-                {
-                    ajouter_position(maListePositions,num_ligne,ordre,num_phrase);
-                }*/
+                in_word = 0;
                 nbr_mots++;
-                //printf("%s\n",strToken);  //TODO Supprimer
-                //printf("\nLa racine0 est %s\n",index->racine->mot); //TODO Supprimer
-                //noeud->mot = malloc(0); // FIXME Problème modifie la racine
-                // On demande le token suivant.
-                //printf("\nLa racine1 est %s\n",index->racine->mot); //TODO Supprimer
-                strToken = strtok ( NULL, separateurs );
-                //printf("\nLa racine2 est %s\n",index->racine->mot); //TODO Supprimer
+                //printf("\n%s\n\n",noeud->mot);
+                ajout_noeud = ajouter_noeud(index,noeud);
+                //free(noeud);
+                noeud->mot=malloc(0);
+                nb_char_mot=0;
 
             }
-            ordre = 0;
-        }
 
+            if (ch == '.') 
+                num_phrase++;
+            
+            if(ch == '\0' || ch == '\n') 
+                num_ligne++;
+        
+        } 
+
+        else {
+            in_word = 1;
+        }
+    }       
+
+        printf("Le nombre de ligne est %d\n",num_ligne);
+        printf("Le nombre de phrases est %d\n",num_phrase);
+        
         fclose(fptxt);
     }
-
+    
     return nbr_mots;
 }
-// 
-// int main(){
-// 
-//    char nomFichier[100];
-//    int nbr_mots;
-//    t_Index* monIndex = malloc(sizeof(t_Index));
-//    //t_Noeud* monNoeud = malloc(sizeof(t_Noeud));
-//     nbr_mots = indexer_fichier(monIndex, "test.txt");
-//     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots); 
-//     return 0;
-// }
-// 
-//gcc indexer_fichier.c -o indexer_fichier
-//./indexer_fichier
+
  

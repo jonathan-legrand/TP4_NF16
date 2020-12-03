@@ -11,18 +11,37 @@
  * @return Renvoie 1 en cas de succès, 0 sinon.
 */
 
+t_Position* creer_position()
+{
+    t_Position* new_position = malloc(sizeof(t_Position));
+    new_position->numero_ligne = 0;
+    new_position->numero_phrase=0;
+    new_position->ordre=0;
+    new_position->suivant=NULL;
+    return new_position;
+}
+
+// TODO CREER LA PREMIER POSITION de la racine
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){
 
-    t_Position *positionEnCours = listeP->debut;
     
+    if (listeP->debut==NULL)
+    {
+        listeP->debut=creer_position(); // FIXME DOUTE
+    }
+
+    t_Position *positionEnCours = listeP->debut;
+
     while (positionEnCours->numero_ligne < ligne)
     {
         positionEnCours=positionEnCours->suivant;
     }
-
-    while (positionEnCours->ordre < ordre)
+    if (positionEnCours->ordre!=NULL) //FIXME pas content seg fault
     {
-        positionEnCours=positionEnCours->suivant;
+        while (positionEnCours->ordre < ordre)
+        {
+            positionEnCours=positionEnCours->suivant;
+        }
     }
 
     while (positionEnCours->numero_phrase < num_phrase) 
@@ -36,6 +55,7 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
         printf("La position souhaitée exite déjà");
         return 0;
     }
+
     else
     {
         t_Position *nouvellePosition = malloc(sizeof(t_Position));
@@ -47,6 +67,9 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
         printf("La position souhaitée a bien été ajoutée");
         return 1;
     }
+
+       
+
     
 }
 
