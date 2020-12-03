@@ -118,8 +118,10 @@ int ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         //noeudPrecedent->filsGauche=malloc(sizeof(t_Noeud));
 
 
-        if (noeudPrecedent == NULL){
+        if (noeudPrecedent == NULL){ // si c'est null ça veut dire que le mot existe deja confirmation ???
             printf("Erreur lors de l'ajout du noeud\n");
+            // TODO ici pour moi il faut faire appel à la fonction ajouter position car le mot est déjà dans l'arbre
+            // TODO en plus du message d'erreur d'ajout on peut dire : "La position du noeud existant a été modifié"
             return !SUCCES;
         }
         if(strcmp(noeud->mot,noeudPrecedent->mot)>0){  // FIXME tolower
