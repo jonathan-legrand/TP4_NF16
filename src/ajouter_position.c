@@ -15,56 +15,71 @@ t_Position* creer_position()
 {
     t_Position* new_position = malloc(sizeof(t_Position));
     new_position->numero_ligne = 0;
-    new_position->numero_phrase=0;
-    new_position->ordre=0;
-    new_position->suivant=NULL;
+    new_position->numero_phrase = 0;
+    new_position->ordre = 0;
+    new_position->suivant=NULL; 
     return new_position;
 }
 
 // TODO CREER LA PREMIER POSITION de la racine
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){
 
+    //t_Position* positionEnCours = listeP->debut;
+    //t_Position* positionEnCours = creer_position();
+    t_Position* positionEnCours = listeP->debut;
+
+    if (listeP->debut!=NULL)
+    {          
+            printf("\n\nligne %d\n\n",positionEnCours->numero_ligne);
+            while (positionEnCours->suivant!=NULL && positionEnCours->numero_ligne < ligne)
+            {
+                positionEnCours=positionEnCours->suivant;
+            }
+
+            while (positionEnCours->suivant!=NULL && positionEnCours->ordre < ordre)
+            {
+                positionEnCours=positionEnCours->suivant;
+            }
+
+
+            while (positionEnCours->suivant!=NULL && positionEnCours->numero_phrase < num_phrase) 
+            {
+                positionEnCours=positionEnCours->suivant;
+
+            }
+    }
     
-    if (listeP->debut==NULL)
+
+    if (listeP->debut == NULL || (ligne!=positionEnCours->numero_ligne) || (ordre!=positionEnCours->ordre) || (num_phrase!=positionEnCours->numero_phrase))
     {
-        listeP->debut=creer_position(); // FIXME DOUTE
-    }
-
-    t_Position *positionEnCours = listeP->debut;
-
-    while (positionEnCours->numero_ligne < ligne)
-    {
-        positionEnCours=positionEnCours->suivant;
-    }
-
-    while (positionEnCours->ordre < ordre)
-    {
-        positionEnCours=positionEnCours->suivant;
-    }
-
-
-    while (positionEnCours->numero_phrase < num_phrase) 
-    {
-        positionEnCours=positionEnCours->suivant;
-
-    }
-
-    if ((ligne==positionEnCours->numero_ligne) && (ordre==positionEnCours->ordre) && (num_phrase==positionEnCours->numero_phrase))
-    {
-        printf("La position souhaitée exite déjà");
-        return 0;
-    }
-
-    else
-    {
+        
         t_Position *nouvellePosition = creer_position();
         nouvellePosition->numero_ligne = ligne;
         nouvellePosition->ordre = ordre;
         nouvellePosition->numero_phrase = num_phrase;
-        nouvellePosition->suivant=positionEnCours->suivant;
-        positionEnCours->suivant = nouvellePosition;
-        printf("La position souhaitée a bien été ajoutée");
+        
+        if (listeP->debut == NULL)
+        {
+            listeP->debut = nouvellePosition;
+            nouvellePosition->suivant = NULL;
+        }
+
+        else
+        {
+            nouvellePosition->suivant=positionEnCours->suivant;
+            positionEnCours->suivant = nouvellePosition;
+        }
+        
+        
+        printf("La position souhaitée a bien été ajoutée\n");
         return 1;
+          
+    }
+
+    else
+    {
+        printf("La position souhaitée exite déjà\n");
+        return 0;
     }
 
        

@@ -41,11 +41,11 @@ int indexer_fichier(t_Index *index, char *filename)
     ;
     // TODO association avec noeud -> position ?
 
-    int ajout_noeud;
+    t_Noeud* nouveau_noeud;
 
     int nbr_mots = 0;
-    int num_ligne = 0;
-    int num_phrase = 0;
+    int num_ligne = 1;
+    int num_phrase = 1;
     int ordre = 0;
     char ch;
     int in_word; // flag : si le charactere n'est pas un espace on met le flag à 1
@@ -83,8 +83,9 @@ int indexer_fichier(t_Index *index, char *filename)
                 noeud_trouve = rechercher_mot(index,noeud->mot);
                 if (noeud_trouve==NULL)
                 {
-                    ajout_noeud = ajouter_noeud(index,noeud);
-                    
+                    nouveau_noeud = ajouter_noeud(index,noeud);
+                    ajouter_position(&(nouveau_noeud->positions),num_ligne,ordre,num_phrase);
+                    nouveau_noeud->nb_occurences++;
                 }
                 else
                 {

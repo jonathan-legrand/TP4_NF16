@@ -16,18 +16,18 @@ afficher_noeud ( t_Noeud *noeud, char lettre )
     if (noeud->mot[0] == lettreMin){
         printf("|-- %s\n",noeud->mot); //On affiche le mot
 
-/*         if(&(noeud->positions) == NULL || noeud->positions.debut == NULL){ //On vérifie la liste de positions
- *             printf("Erreur : la liste des positions n'est pas correctement initialisée\n");
- *             exit(EXIT_FAILURE);
- *         }
- *         t_Position position;
- *         position = *(noeud->positions.debut);
- * 
- *         for(int i = 0; i < noeud->nb_occurences; i++){ //On affiche la liste des positions
- *             printf("|----(l:%d, o:%d, p:%d)",position.numero_ligne,position.ordre,position.numero_phrase);
- *             position = *position.suivant;
- *         }
- */ //TODO Décommenter dès que les listes de positions seront réparées, ça fait planter l'exécution pour l'instant
+         if(&(noeud->positions) == NULL || noeud->positions.debut == NULL){ //On vérifie la liste de positions
+             printf("Erreur : la liste des positions n'est pas correctement initialisée\n");
+             exit(EXIT_FAILURE);
+         }
+         t_Position position;
+         position = *(noeud->positions.debut);
+ 
+    for(int i = 0; i < noeud->nb_occurences; i++){ //On affiche la liste des positions
+             printf("|----(l:%d, o:%d, p:%d)\n",position.numero_ligne,position.ordre,position.numero_phrase);
+             position = *position.suivant;
+         }
+ //TODO Décommenter dès que les listes de positions seront réparées, ça fait planter l'exécution pour l'instant
 
     }
 
