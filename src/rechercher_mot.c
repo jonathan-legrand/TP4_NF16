@@ -43,7 +43,7 @@ t_Noeud* rechercher_mot(t_Index *index, char *mot){
     }
     else
     {
-        printf("Le noeud n'existe pas");
+        printf("Le noeud n'existe pas\n");
         return NULL;
     }
 

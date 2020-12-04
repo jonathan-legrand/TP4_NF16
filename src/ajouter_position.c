@@ -36,13 +36,12 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
     {
         positionEnCours=positionEnCours->suivant;
     }
-    if (positionEnCours->ordre!=NULL) //FIXME pas content seg fault
+
+    while (positionEnCours->ordre < ordre)
     {
-        while (positionEnCours->ordre < ordre)
-        {
-            positionEnCours=positionEnCours->suivant;
-        }
+        positionEnCours=positionEnCours->suivant;
     }
+
 
     while (positionEnCours->numero_phrase < num_phrase) 
     {
@@ -58,7 +57,7 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
 
     else
     {
-        t_Position *nouvellePosition = malloc(sizeof(t_Position));
+        t_Position *nouvellePosition = creer_position();
         nouvellePosition->numero_ligne = ligne;
         nouvellePosition->ordre = ordre;
         nouvellePosition->numero_phrase = num_phrase;

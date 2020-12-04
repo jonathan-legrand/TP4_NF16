@@ -3,6 +3,8 @@
 #include "../include/ajouter_position.h"
 #include "../include/creer_liste_positions.h"
 #include "../include/chaines.h"
+#include "../include/rechercher_mot.h"
+
 
 #include <stdio.h>
 #define TAILLE_MAX 1000
@@ -34,9 +36,8 @@ int indexer_fichier(t_Index *index, char *filename)
     //index->racine->mot=malloc(sizeof(0));
     t_Noeud* noeud=malloc(sizeof(t_Noeud));
     noeud->mot= malloc(sizeof(0));
-    //t_ListePositions* maListePositions = creer_liste_positions();
     //index->racine->positions = *creer_liste_positions();
-
+    t_Noeud* noeud_trouve;
     ;
     // TODO association avec noeud -> position ?
 
@@ -77,10 +78,24 @@ int indexer_fichier(t_Index *index, char *filename)
 
                 in_word = 0;
                 nbr_mots++;
+                ordre++;
                 //printf("\n%s\n\n",noeud->mot);
-                ajout_noeud = ajouter_noeud(index,noeud);
+                noeud_trouve = rechercher_mot(index,noeud->mot);
+                if (noeud_trouve==NULL)
+                {
+                    ajout_noeud = ajouter_noeud(index,noeud);
+                    
+                }
+                else
+                {
+                    ajouter_position(&(noeud_trouve->positions),num_ligne,ordre,num_phrase);
+                    noeud_trouve->nb_occurences++;
+                }
+                
+                
                 //free(noeud);
-                noeud->mot=malloc(0); // TODO à améliorer
+                noeud->mot=malloc(0);
+                // TODO à améliorer
                 // TODO l'idée serait de free tout le noeud mais pour ce faire il faudrait créer des malloc de noeud à chaque nouveau mot
                 // TODO il faudrait aussi modifier l'initialisation au début du programme de noeud et noeud->mot
                 // TODO le but est de passer à ajouter tous les caractéristiques du noeud c'est à dire son mot, sa liste de position etc..
@@ -89,11 +104,16 @@ int indexer_fichier(t_Index *index, char *filename)
 
             }
 
-            if (ch == '.') 
+            if (ch == '.')
+            {
                 num_phrase++;
+            }
             
-            if(ch == '\0' || ch == '\n') 
+            if(ch == '\0' || ch == '\n')
+            {
                 num_ligne++;
+                ordre = 0;
+            } 
         
         } 
 
