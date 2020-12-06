@@ -105,7 +105,6 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
           strcpy(index->racine->mot,noeud->mot);*/
         index->racine=creer_noeud();
         // it's a deep copy
-        memcpy (index->racine, noeud, sizeof (*(index->racine)));
         index->racine->mot = strdup (noeud->mot);
         printf("adresse liste de positions (dans ajouter_noeud cas racine) : %p\n",index->racine->positions); //TODO Ça vient de là le problème, à mon avis, la liste de positions vaut nil à cet endroit là
         printf("test ajout racine : mot = %s\n",index->racine->mot);
