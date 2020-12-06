@@ -131,7 +131,7 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         char *nouvChaine = malloc(sizeof(0));
         char *nouvChaine2 = malloc(sizeof(0));
         cmpChar = strcmp(strtolower(nouvChaine,noeudPrecedent->mot),strtolower(nouvChaine2,noeud->mot));
-
+        *(noeud->mot+0)=toupper(*(noeud->mot+0)); // Première lettre en maj ( le 0 est inutile c'est juste pour la compréhension)
 
         if(cmpChar<0){  // FIXME tolower
             // noeudPrecedent->mot est lexicalement plus petit que mot
