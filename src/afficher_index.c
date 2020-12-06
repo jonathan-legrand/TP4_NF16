@@ -13,7 +13,7 @@
 afficher_noeud ( t_Noeud *noeud, char lettre )
 {
     char lettreMin = lettre + ('a'-'A'); 
-    if (noeud->mot[0] == lettreMin){
+    if (tolower(noeud->mot[0]) == lettreMin){
         printf("|-- %s\n",noeud->mot); //On affiche le mot
 
         if(noeud->positions == NULL){
