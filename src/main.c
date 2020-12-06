@@ -7,6 +7,9 @@
 #include "../include/creer_liste_positions.h"
 #include "../include/rechercher_mot.h"
 #include "../include/afficher_index.h"
+#include "../include/verifier_equilibre.h"
+#include "../include/rechercher_mot.h"
+#include "../include/chaines.h"
 
 
 
@@ -17,6 +20,7 @@
 #define AFFICHER_OCCURENCES 5 
 #define EQUILIBRER 6
 #define QUITTER 7
+#define TAILLE_MAX 25
 
 
 
@@ -34,6 +38,12 @@
         char nomFichier[20];
         t_Index* monIndex = creer_index(); 
         int nbr_mots;
+
+        //Déclarations case rechercher
+        char mot_recherche[TAILLE_MAX];
+        char mot_entre[TAILLE_MAX];
+        t_Noeud *noeud_recherche;
+
     
         do {
 
@@ -90,6 +100,17 @@
                     break;
 
                 case RECHERCHER:
+                    //scanf("%s",mot_entre);
+                    //strtolower(mot_recherche,mot_entre);
+                    printf("Entrez le mot à rechercher : ");
+                    scanf("%s",mot_recherche);
+                    noeud_recherche = rechercher_mot(monIndex,mot_recherche);
+                    if (noeud_recherche == NULL){
+                        printf("Le mot n'est pas présent dans l'index\n\n");
+                    } else {
+                        afficher_noeud(noeud_recherche,toupper(mot_recherche[0]));          
+                    }
+
                     break;
 
                 case AFFICHER_OCCURENCES:
