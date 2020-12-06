@@ -19,7 +19,9 @@
 t_Noeud* creer_noeud()
 {
     t_Noeud* new_noeud = malloc(sizeof(t_Noeud));
-    new_noeud->positions=*creer_liste_positions();
+    new_noeud->positions = creer_liste_positions();
+    printf("adresse liste de positions (dans creer_noeud) : %p\n",new_noeud->positions);
+    
     new_noeud->filsGauche=NULL;
     new_noeud->filsDroit=NULL;
     new_noeud->nb_occurences=0;
@@ -94,7 +96,7 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         printf("Erreur : l'index fourni en paramètre n'existe pas\n");
         return NULL;
     }
-    // Cas lorsque la racine est vide, le noeud ajouté devient la racine
+    // Cas lorsque la racine est vide, on ajoute le noeud à la racine
     if(index->racine==NULL)
     {
         //printf("\ncoucou2\n"); // TODO Supprimer
@@ -105,7 +107,8 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         // it's a deep copy
         memcpy (index->racine, noeud, sizeof (*(index->racine)));
         index->racine->mot = strdup (noeud->mot);
-
+        printf("adresse liste de positions (dans ajouter_noeud cas racine) : %p\n",index->racine->positions); //TODO Ça vient de là le problème, à mon avis, la liste de positions vaut nil à cet endroit là
+        printf("test ajout racine : mot = %s\n",index->racine->mot);
         return index->racine;
     }
 

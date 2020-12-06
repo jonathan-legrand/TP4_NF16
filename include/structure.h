@@ -29,7 +29,7 @@ typedef struct t_noeud
 {
     char* mot;
     int nb_occurences;
-    t_ListePositions positions;
+    t_ListePositions* positions;
     struct t_noeud* filsGauche;
     struct t_noeud* filsDroit;
 }t_noeud;

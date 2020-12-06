@@ -73,7 +73,7 @@ int indexer_fichier(t_Index *index, char *filename)
         }
         
         if(ch == ' ' || ch == '\0' || ch == '\n'|| ch=='.') {
-            
+
             if (in_word) {
 
                 in_word = 0;
@@ -84,16 +84,21 @@ int indexer_fichier(t_Index *index, char *filename)
                 if (noeud_trouve==NULL)
                 {
                     nouveau_noeud = ajouter_noeud(index,noeud);
-                    ajouter_position(&(nouveau_noeud->positions),num_ligne,ordre,num_phrase);
+
+                    if(nouveau_noeud->positions==NULL){
+                        printf("Erreur : c'est vraiment de la merde\n");
+                    }
+
+                    ajouter_position(nouveau_noeud->positions,num_ligne,ordre,num_phrase);
                     nouveau_noeud->nb_occurences++;
                 }
                 else
                 {
-                    ajouter_position(&(noeud_trouve->positions),num_ligne,ordre,num_phrase);
+                    ajouter_position(noeud_trouve->positions,num_ligne,ordre,num_phrase);
                     noeud_trouve->nb_occurences++;
                 }
-                
-                
+
+
                 //free(noeud);
                 noeud->mot=malloc(0);
                 // TODO à améliorer

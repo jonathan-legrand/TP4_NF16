@@ -24,9 +24,12 @@ t_Position* creer_position()
 // TODO CREER LA PREMIER POSITION de la racine
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){
 
-    //t_Position* positionEnCours = listeP->debut;
-    //t_Position* positionEnCours = creer_position();
-    t_Position* positionEnCours = listeP->debut;
+    if(listeP==NULL){
+        printf("Erreur : la liste n'existe pas\n");
+    }
+    listeP->debut = NULL;
+    t_Position* positionEnCours = creer_position();
+    positionEnCours = listeP->debut;
 
     if (listeP->debut!=NULL)
     {          
@@ -50,37 +53,34 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
     }
     
 
+
     if (listeP->debut == NULL || (ligne!=positionEnCours->numero_ligne) || (ordre!=positionEnCours->ordre) || (num_phrase!=positionEnCours->numero_phrase))
     {
-        
+
+
         t_Position *nouvellePosition = creer_position();
         nouvellePosition->numero_ligne = ligne;
         nouvellePosition->ordre = ordre;
         nouvellePosition->numero_phrase = num_phrase;
-        
-        if (listeP->debut == NULL)
-        {
-            listeP->debut = nouvellePosition;
-            nouvellePosition->suivant = NULL;
-        }
 
-        else
-        {
-            nouvellePosition->suivant=positionEnCours->suivant;
-            positionEnCours->suivant = nouvellePosition;
-        }
-        
-        
+        if (listeP !=NULL){
+        nouvellePosition->suivant = listeP->debut;
+        listeP->debut = nouvellePosition;
         printf("La position souhaitée a bien été ajoutée\n");
         return 1;
-          
-    }
+        }
+
+    return 0;
+
+
+   }
 
     else
     {
         printf("La position souhaitée exite déjà\n");
         return 0;
     }
+
 
        
 
