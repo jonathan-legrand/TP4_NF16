@@ -67,6 +67,7 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
         {
             listeP->debut = nouvellePosition;
             nouvellePosition->suivant = NULL;
+
         }
 
         else
@@ -75,8 +76,9 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
             positionEnCours->suivant = nouvellePosition;
         }
 
-
+        listeP->nb_elements++;
         printf("La position souhaitée a bien été ajoutée\n");
+        //printf("Le nombre d'éléments dans la liste est désormais %d\n",listeP->nb_elements);
         return 1;
 
     }

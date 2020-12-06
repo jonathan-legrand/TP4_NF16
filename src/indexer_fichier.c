@@ -50,6 +50,7 @@ int indexer_fichier(t_Index *index, char *filename)
     char ch;
     int in_word; // flag : si le charactere n'est pas un espace on met le flag à 1
     int nb_char_mot = 0;
+    int nbr_mots_different=0;
     FILE *fptxt;
     fptxt=fopen(filename,"r");
 
@@ -83,6 +84,7 @@ int indexer_fichier(t_Index *index, char *filename)
                 noeud_trouve = rechercher_mot(index,noeud->mot);
                 if (noeud_trouve==NULL)
                 {
+                    nbr_mots_different++;
                     nouveau_noeud = ajouter_noeud(index,noeud);
 
                     if(nouveau_noeud->positions==NULL){
@@ -133,6 +135,9 @@ int indexer_fichier(t_Index *index, char *filename)
         
         fclose(fptxt);
     }
+
+    index->nb_mots_differents = nbr_mots_different;
+    index->nb_mots_total = nbr_mots;
     
     return nbr_mots;
 }

@@ -68,6 +68,18 @@
 
                 case CARACTERISTIQUES:
                     printf("Choix 2\n");
+                    if(est_Equilibre(monIndex->racine))
+                    {
+                        printf("\nL'index est équilibré\n");
+                    }
+                    else
+                    {
+                        printf("\nL'index n'est pas équilibré\n");
+                    }
+                    
+                    printf("\nVoici les caractéristiques de l'index : \n\n");
+                    printf("-Le nombre de mots total est : %d\n",monIndex->nb_mots_total);
+                    printf("-Le nombre de mots différents est : %d\n\n",monIndex->nb_mots_differents);
                     break;
 
                 case AFFICHER_INDEX:
