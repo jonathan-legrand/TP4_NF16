@@ -16,7 +16,7 @@ clean:
 	rm -f *.o
 
 mrproper: clean
-	rm -f bin/abr
+	rm -f bin/abr bin/debug
 
 debug:	$(HEADERS)
 	$(CC) -g $(SRC) -o bin/$@ $(CFLAGS)
