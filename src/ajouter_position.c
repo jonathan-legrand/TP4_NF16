@@ -27,7 +27,6 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
     if(listeP==NULL){
         printf("Erreur : la liste n'existe pas\n");
     }
-    listeP->debut = NULL;
     t_Position* positionEnCours = creer_position();
     positionEnCours = listeP->debut;
 
