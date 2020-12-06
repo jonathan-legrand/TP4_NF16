@@ -126,8 +126,15 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
             // TODO en plus du message d'erreur d'ajout on peut dire : "La position du noeud existant a été modifié"
             return NULL;
         }
-        if(strcmp(noeud->mot,noeudPrecedent->mot)>0){  // FIXME tolower
-            // noeudPrecedent->mot est lexicalement plus grand que mot
+
+        int cmpChar;
+        char *nouvChaine = malloc(sizeof(0));
+        char *nouvChaine2 = malloc(sizeof(0));
+        cmpChar = strcmp(strtolower(nouvChaine,noeudPrecedent->mot),strtolower(nouvChaine2,noeud->mot));
+
+
+        if(cmpChar<0){  // FIXME tolower
+            // noeudPrecedent->mot est lexicalement plus petit que mot
             //noeudPrecedent->filsDroit = noeud;
             noeudPrecedent->filsDroit=creer_noeud();
             noeudPrecedent->filsDroit->mot = strdup (noeud->mot);
@@ -135,8 +142,8 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
             printf("\nle fils droit qui vient d'être ajouté : %s\n",index->racine->filsDroit->mot);
             return noeudPrecedent->filsDroit;
         }
-        else if(strcmp(noeud->mot,noeudPrecedent->mot)<0) {  //FIXME j'ai inversé demander confirmation ???
-            // noeud->mot est lexicalement plus petit que noeudPrecedent->mot
+        else if(cmpChar>0) {  //FIXME j'ai inversé demander confirmation ???
+            // noeudPrecedent->mot est lexicalement plus grand que mot
             printf("\nLe noeud a bien été ajouté");
             //noeudPrecedent->filsGauche = noeud;
             noeudPrecedent->filsGauche=creer_noeud();
