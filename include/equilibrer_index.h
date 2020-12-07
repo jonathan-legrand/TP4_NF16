@@ -3,6 +3,7 @@
 #include "structure.h"
 #include "chaines.h"
 #include "indexer_fichier.h"
+#include "afficher_index.h"
 #define TAILLE_MAX 25
 
 typedef char** tableau;

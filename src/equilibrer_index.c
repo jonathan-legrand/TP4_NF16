@@ -1,5 +1,6 @@
 #include "../include/equilibrer_index.h"
 // TODO Mettre à jour les headers
+// TODO Vérifier si l'index est déjà équilibré
 int id = 0;
 
 /* 
@@ -9,11 +10,12 @@ int id = 0;
  * =====================================================================================
  */
     void
-afficher_tableau ( char mots[25][25], int taille )
+afficher_tableau ( t_Noeud *noeuds[25], int taille )
 {
     
     for ( int i = 0; i < taille; i ++ ) {
-        printf("%s\t",mots[i]);
+        //printf("%s\t",noeuds[i]->mot);
+        afficher_noeud(noeuds[i],toupper(noeuds[i]->mot[0]));
     }
     printf("\n\n");
 }		/* -----  end of function afficher_tableau  ----- */
@@ -25,34 +27,33 @@ afficher_tableau ( char mots[25][25], int taille )
  *  Description:  
  * =====================================================================================
  */
-void stockage_mots (t_noeud *noeud, char mots[25][25])
+void stockage_noeuds (t_noeud *noeud, t_Noeud *noeuds[25])
 {
-/*      if(noeud == NULL)
- *           return;
- * 
- *      mots[i] = noeud->mot;
- *      i++;
- *      if(noeud->filsGauche != NULL)
- *           stockage_mots(noeud->filsGauche, mots, i);
- *      if(noeud->filsDroit != NULL)
- *           stockage_mots(noeud->filsDroit, mots, i);
- * 
- */
-/*     
- *     strcpy(mots[id],noeud->mot);
- *     id++;
- *     stockage_mots(mots, noeud->filsDroit, id);
- */
+
     if(noeud == NULL)
         return;
-    stockage_mots(noeud->filsGauche, mots);
+    stockage_noeuds(noeud->filsGauche, noeuds);
     //printf("id = %d mot = %s \t",id++,noeud->mot);
-    strcpy(mots[id++],noeud->mot);
-    stockage_mots(noeud->filsDroit, mots);
+    memcpy(noeuds[id++],noeud,sizeof(t_Noeud));
+    stockage_noeuds(noeud->filsDroit, noeuds);
 
 
 
 }		
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  creer_abr
+ *  Description:  
+ * =====================================================================================
+ */
+t_Noeud *creer_abr ( t_Noeud *noeuds[TAILLE_MAX], int debut, int fin )
+
+{
+    int milieu = (debut+fin)/2;
+    return NULL;
+}		/* -----  end of function creer_abr  ----- */
 
 
 /* 
@@ -70,20 +71,25 @@ t_Index *equilibrer_index (t_Index *index)
 
     //Initialisation du tableau
     //char mot[TAILLE_MAX]; 
-    int nombre_mots = index->nb_mots_differents;
-    printf("%d\n",nombre_mots);
-    char mots[25][25];
-    //tableau mots = malloc(nombre_mots*sizeof(mot));
+    int nombre_noeuds = index->nb_mots_differents;
+    printf("%d\n",nombre_noeuds);
+    t_Noeud *noeuds[TAILLE_MAX];
+    int i = 0;
+    for ( i = 0; i < nombre_noeuds; i += 1 ) {
+        noeuds[i] = malloc(sizeof(t_Noeud));
+    }
+    //tableau noeuds = malloc(nombre_noeuds*sizeof(mot));
     //
     
-    //for ( int i = 0; i < nombre_mots; i += 1 ) strcpy(mots[i],"tesmorts");
-    //afficher_tableau(mots,nombre_mots);
+    //for ( int i = 0; i < nombre_noeuds; i += 1 ) strcpy(noeuds[i],"tesmorts");
+    //afficher_tableau(noeuds,nombre_noeuds);
 
     //Stockage des nombres dans le tableau
-    int i = 0;
-    stockage_mots(index->racine,mots);
-    afficher_tableau(mots,nombre_mots);
-    
+    stockage_noeuds(index->racine,noeuds);
+    afficher_tableau(noeuds,nombre_noeuds);
+
+
+    creer_abr(noeuds,0,nombre_noeuds);
 
     return index_equilibre;
 }		/* -----  end of function equilibrer_index  ----- */
