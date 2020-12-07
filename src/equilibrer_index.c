@@ -1,6 +1,7 @@
 #include "../include/equilibrer_index.h"
 // TODO Mettre à jour les headers
 // TODO Vérifier si l'index est déjà équilibré
+// FIXME Les caractéristiques du nouvel index
 int id = 0;
 
 /* 
@@ -53,7 +54,7 @@ t_Noeud *creer_abr ( t_Noeud *noeuds[TAILLE_MAX], int debut, int fin )
 {
     if (debut>fin) return NULL;
     int milieu = (debut+fin)/2;
-    printf("milieu = %d ",milieu);
+    //printf("milieu = %d ",milieu);
 
     t_Noeud *racine = creer_noeud();
     if (racine == NULL){
@@ -110,6 +111,9 @@ t_Index *equilibrer_index (t_Index *index)
     //On vérifie si l'arbre créé est équilibré
     if(est_Equilibre(abr)){
         index_equilibre->racine = abr;
+        index_equilibre->nb_mots_differents = index->nb_mots_differents;
+        index_equilibre->nb_mots_total = index->nb_mots_total;
+        free(index);
         return index_equilibre;
     } else {
         printf("Erreur : l'arbre créé n'est pas équilibré\n");
