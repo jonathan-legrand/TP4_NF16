@@ -32,7 +32,6 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
 
     if (listeP->debut!=NULL)
     {          
-            printf("\n\nligne %d\n\n",positionEnCours->numero_ligne);
             while (positionEnCours->suivant!=NULL && positionEnCours->numero_ligne < ligne)
             {
                 positionEnCours=positionEnCours->suivant;

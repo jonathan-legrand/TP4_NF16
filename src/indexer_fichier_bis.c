@@ -5,10 +5,7 @@
 #include "../include/chaines.h"
 #include "../include/rechercher_mot.h"
 
-// TODO l'idée est de créer un arbre uniquement en fonctions du numero de phrase. On va obtenir un arbre full droit
-// TODO il faut créer une fonction de recherche qui prend on entrée le numero de la phrase
-// TODO pour moi pas besoin de creer finalement in autre index genre on creer une liste qui s'appelle listephrase qui contient les mots de chaque phrase
-// TODO occurence prend index en pointeur
+
 #include <stdio.h>
 #define TAILLE_MAX 1000
 
@@ -188,23 +185,7 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
 }
 
  
-/*afficher_index_bis(p_Index *index)
-{
-    p_Noeud *abr = index->racine;
-    p_Mot* motEnCours = index->racine->listemots;
-    while (abr!=NULL)
-    {
-        printf("Voici la phrase %d : \n\n",abr->numero_phrase);
-        while (motEnCours!=NULL)
-        {
-            printf("%s\n",motEnCours->mot);
-            motEnCours=motEnCours->suivant;
-        }
-        abr=abr->filsDroit;
-        
-    }
-    
-}*/
+
 
 void affichage_Noeud(listeNoeud listenoeud){
     
@@ -229,5 +210,15 @@ void affichage_Noeud(listeNoeud listenoeud){
        printf("\n");
    }
     
-    //return provided_affichage_Patients(listePatients);
 }
+
+
+
+
+
+
+
+// TODO l'idée est de créer un arbre uniquement en fonctions du numero de phrase. On va obtenir un arbre full droit
+// TODO il faut créer une fonction de recherche qui prend on entrée le numero de la phrase
+// TODO pour moi pas besoin de creer finalement in autre index genre on creer une liste qui s'appelle listephrase qui contient les mots de chaque phrase
+// TODO occurence prend index en pointeur

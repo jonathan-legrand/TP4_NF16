@@ -22,9 +22,8 @@ t_Index* creer_index(){
     {
         return NULL;
     }
-    
-    // mon_nouveau_index->racine=malloc(sizeof(t_Noeud)); // FIXME DOUTE
-    mon_nouveau_index->racine = NULL; // FIXME DOUTE
+
+    mon_nouveau_index->racine = NULL; 
     mon_nouveau_index->nb_mots_differents=0;
     mon_nouveau_index->nb_mots_total=0;
     return mon_nouveau_index;
@@ -39,7 +38,7 @@ int indexer_fichier(t_Index *index, char *filename)
     //index->racine->positions = *creer_liste_positions();
     t_Noeud* noeud_trouve;
     ;
-    // TODO association avec noeud -> position ?
+    
 
     t_Noeud* nouveau_noeud;
 
@@ -99,11 +98,7 @@ int indexer_fichier(t_Index *index, char *filename)
 
                 //free(noeud);
                 noeud->mot=malloc(0);
-                // TODO à améliorer
-                // TODO l'idée serait de free tout le noeud mais pour ce faire il faudrait créer des malloc de noeud à chaque nouveau mot
-                // TODO il faudrait aussi modifier l'initialisation au début du programme de noeud et noeud->mot
-                // TODO le but est de passer à ajouter tous les caractéristiques du noeud c'est à dire son mot, sa liste de position etc..
-                // TODO car l'objectif est que dans la fonction ajouter noued on fasse appel à la fonction ajouter position quand le noeud->mot est le même
+                
                 nb_char_mot=0;
 
             }
@@ -126,8 +121,8 @@ int indexer_fichier(t_Index *index, char *filename)
         }
     }       
 
-        printf("Le nombre de ligne est %d\n",num_ligne);
-        printf("Le nombre de phrases est %d\n",num_phrase);
+        printf("\nLe nombre de ligne est %d\n",num_ligne);
+        printf("\nLe nombre de phrases est %d\n",num_phrase);
         
         fclose(fptxt);
     }
@@ -139,3 +134,13 @@ int indexer_fichier(t_Index *index, char *filename)
 }
 
  
+
+
+
+
+
+                // TODO à améliorer
+                // TODO l'idée serait de free tout le noeud mais pour ce faire il faudrait créer des malloc de noeud à chaque nouveau mot
+                // TODO il faudrait aussi modifier l'initialisation au début du programme de noeud et noeud->mot
+                // TODO le but est de passer à ajouter tous les caractéristiques du noeud c'est à dire son mot, sa liste de position etc..
+                // TODO car l'objectif est que dans la fonction ajouter noued on fasse appel à la fonction ajouter position quand le noeud->mot est le même

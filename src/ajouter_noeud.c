@@ -5,16 +5,12 @@
 
 /* 
  * ===  FUNCTION  ======================================================================
- *         Name:  ajouter_noeud
+ *         Name:  creer_noeud
  *  Description:  
  * =====================================================================================
  */
 
-// TODO A modifier 
-/**
- * @brief Crée une liste de positions vide
- * @return Renvoie la liste, si echec renvoie NULL
- */
+
 
 t_Noeud* creer_noeud()
 {
@@ -30,52 +26,46 @@ t_Noeud* creer_noeud()
 
 
 
-//FIXME Faut - il modifier la racine ou pas ?
 t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
 {
     char *nouvChaine = malloc(sizeof(0));
     char *nouvChaine2 = malloc(sizeof(0));
     t_Noeud *noeudEnCours = index->racine;
-    printf("\nla racine : %s",index->racine->mot);
-    if (index->racine->filsDroit!=NULL)
-        printf("\nle fils droit est %s\n",index->racine->filsDroit->mot);
-    //char *motEnCours=NULL; Non utilisé
+    //printf("\nla racine : %s",index->racine->mot);
+    /*if (index->racine->filsDroit!=NULL)
+        printf("\nle fils droit est %s\n",index->racine->filsDroit->mot);*/
     int cmpChar;
-    //printf("\ncoucou4"); // TODO Supprimer
     while(noeudEnCours != NULL){
-        //printf("\ncoucou5"); // TODO Supprimer
-        //strcpy(motEnCours,noeudEnCours->mot); // FIXME ATTENTION REMPALCEMENT bon ou pas ?
 
-        printf("\nLe mot en cours est %s",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
-        printf("\nLe mot à chercher est %s",noeud->mot);
+        //printf("\nLe mot en cours est %s",noeudEnCours->mot);
+        //printf("\nLe mot à chercher est %s",noeud->mot);
 
         cmpChar = strcmp(strtolower(nouvChaine,noeudEnCours->mot),strtolower(nouvChaine2,noeud->mot));
-        //printf("\ncoucou6"); // TODO Supprimer
         if (!cmpChar){
             printf("Le mot est déjà présent dans l'abr, rien n'a été ajouté\n");
             return NULL; 
         }
-        else if(cmpChar<0){  //FIXME TOLOWER
+        else if(cmpChar<0){ 
             // noeudEnCours->mot est lexicalement plus petit que noeud->mot
             if(noeudEnCours->filsDroit == NULL){
-                printf("\nfils droit null");
+                //printf("\nfils droit null");
                 return(noeudEnCours);
             }
             //printf("\nfils droit non null\n");
-            printf("Fils droit : %s\n",noeudEnCours->filsDroit->mot);
+            //printf("Fils droit : %s\n",noeudEnCours->filsDroit->mot);
             noeudEnCours = noeudEnCours->filsDroit;
         } else if(cmpChar>0){
             // noeudEnCours->mot est lexicalement plus grand que noeud->mot
             if(noeudEnCours->filsGauche == NULL){
-                printf("\nfils gauche null");
+                //printf("\nfils gauche null");
                 return(noeudEnCours);
             }
-            printf("\nfils gauche non null");
+            //printf("\nfils gauche non null");
             noeudEnCours = noeudEnCours->filsGauche;
         }
-        printf("\n fin itér: Le mot en cours sera %s",noeudEnCours->mot); // FIXME à la deuxième itération le mot en cours prend la valeur du noeud à chercher directement
-        printf("\n fin itér: Le mot à chercher est %s",noeud->mot);
-        //motEnCours=malloc(0); // FIXME UTILE OU PAS ?
+        //printf("\n fin itér: Le mot en cours sera %s",noeudEnCours->mot); 
+        //printf("\n fin itér: Le mot à chercher est %s",noeud->mot);
+        //motEnCours=malloc(0);
     }
     return noeudEnCours;
 }
@@ -89,8 +79,7 @@ t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud)
  */
 t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud) 
 {
-    //t_Noeud* noeudTmp = noeud; // FIXME à modifier comme avant avec juste noeud
-    //printf("\ncoucou1\n"); // TODO Supprimer
+    
     if (index == NULL){
         printf("Erreur : l'index fourni en paramètre n'existe pas\n");
         return NULL;
@@ -98,10 +87,7 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
     // Cas lorsque la racine est vide, on ajoute le noeud à la racine
     if(index->racine==NULL)
     {
-        //printf("\ncoucou2\n"); // TODO Supprimer
-        //index->racine->mot=malloc(strlen(noeud->mot));
-        /*index->racine=noeud;
-          strcpy(index->racine->mot,noeud->mot);*/
+        
         index->racine=creer_noeud();
         // it's a deep copy
         index->racine->mot = strdup (noeud->mot);
@@ -109,18 +95,14 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
     }
 
     else{
-        //printf("\n La valeur de la racine est %s\n",index->racine->mot);  TODO Supprimer
-        //printf("\ncoucou3\n"); TODO Supprimer
+        
         t_noeud *noeudPrecedent =creer_noeud();
         noeudPrecedent = rechercher_noeud(index,noeud);
-        //noeudPrecedent->filsDroit=malloc(sizeof(t_Noeud));
-        //noeudPrecedent->filsGauche=malloc(sizeof(t_Noeud));
-
+        
 
         if (noeudPrecedent == NULL){ // si c'est null ça veut dire que le mot existe deja confirmation ???
             printf("Erreur lors de l'ajout du noeud\n");
-            // TODO ici pour moi il faut faire appel à la fonction ajouter position car le mot est déjà dans l'arbre
-            // TODO en plus du message d'erreur d'ajout on peut dire : "La position du noeud existant a été modifié"
+
             return NULL;
         }
 
@@ -130,16 +112,15 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         cmpChar = strcmp(strtolower(nouvChaine,noeudPrecedent->mot),strtolower(nouvChaine2,noeud->mot));
         *(noeud->mot+0)=toupper(*(noeud->mot+0)); // Première lettre en maj ( le 0 est inutile c'est juste pour la compréhension)
 
-        if(cmpChar<0){  // FIXME tolower
+        if(cmpChar<0){  
             // noeudPrecedent->mot est lexicalement plus petit que mot
-            //noeudPrecedent->filsDroit = noeud;
             noeudPrecedent->filsDroit=creer_noeud();
             noeudPrecedent->filsDroit->mot = strdup (noeud->mot);
             printf("\nLe noeud a bien été ajouté\n");
-            printf("\nle fils droit qui vient d'être ajouté : %s\n",index->racine->filsDroit->mot);
+            //printf("\nle fils droit qui vient d'être ajouté : %s\n",index->racine->filsDroit->mot);
             return noeudPrecedent->filsDroit;
         }
-        else if(cmpChar>0) {  //FIXME j'ai inversé demander confirmation ???
+        else if(cmpChar>0) {  
             // noeudPrecedent->mot est lexicalement plus grand que mot
             printf("\nLe noeud a bien été ajouté\n");
             //noeudPrecedent->filsGauche = noeud;
@@ -147,7 +128,7 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
             noeudPrecedent->filsGauche->mot = strdup (noeud->mot);
             return noeudPrecedent->filsGauche;
         }
-    } // FIXME parenthese ok ?
+    }
     return NULL;
 }		/* -----  end of function ajouter_noeud  ----- */
 
