@@ -40,7 +40,7 @@
         char nomFichier[20];
         t_Index* monIndex = creer_index(); 
         int nbr_mots;
-        listeNoeud listenoeud = creer_noeud_bis();
+        listeNoeud maListenoeud = creer_noeud_bis();
 
         //Déclarations case rechercher
         char mot_recherche[TAILLE_MAX];
@@ -117,9 +117,9 @@
                     break;
 
                 case AFFICHER_OCCURENCES:
-                    indexer_fichier_bis(listenoeud, "fichier_equilibre.txt");
+                    indexer_fichier_bis(maListenoeud, "fichier_equilibre.txt");
                     printf("\n\nAffichage\n\n");
-                    affichage_Noeud(listenoeud);
+                    affichage_Noeud(maListenoeud);
                     break;
 
                 case EQUILIBRER:

@@ -59,8 +59,9 @@ p_Mot* creer_mot(){
 }
 
 p_Mot* ajouterMots(listeMots* liste_de_mots, char* mot){
+    
     p_Mot* nouveau_mot_phrase;
-    nouveau_mot_phrase=malloc(sizeof(p_Mot));
+    nouveau_mot_phrase=creer_mot();;
             //printf("test1\n");
 
     if (nouveau_mot_phrase!=NULL)
@@ -68,9 +69,11 @@ p_Mot* ajouterMots(listeMots* liste_de_mots, char* mot){
         //printf("test2\n");
 
         nouveau_mot_phrase->mot = mot;
-        printf("\nmot ajouté : %s\n",nouveau_mot_phrase->mot);
-        nouveau_mot_phrase->suivant = liste_de_mots;
-        liste_de_mots=nouveau_mot_phrase;
+        //printf("\nmot ajouté : %s\n",nouveau_mot_phrase->mot);
+
+        nouveau_mot_phrase->suivant = *liste_de_mots;
+        *liste_de_mots=nouveau_mot_phrase;
+    
         //printf("test3\n");
 
         return nouveau_mot_phrase;
@@ -86,8 +89,8 @@ p_Noeud* ajouterNoeuds(listeNoeud* listenoeud, int num_phrase)
     p_Noeud* nouveau_noeud=creer_noeud_bis();
     nouveau_noeud->numero_phrase=num_phrase;
 
-    nouveau_noeud->suivant = listenoeud;
-    listenoeud=nouveau_noeud;
+    nouveau_noeud->suivant = *listenoeud;
+    *listenoeud=nouveau_noeud;
     return nouveau_noeud;
 
 }
@@ -99,7 +102,7 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
     //index->racine = creer_noeud_bis();
     //p_Noeud *abr = index->racine;
 
-    p_Noeud* nouveau_noeud;
+   
     //nouveau_noeud=creer_noeud_bis();
 
     char *mot_phrase = malloc(sizeof(0));
@@ -109,6 +112,11 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
     char ch;
     int in_word; // flag : si le charactere n'est pas un espace on met le flag à 1
     int nb_char_mot = 0;
+
+    ajouterNoeuds(&listenoeud,num_phrase);// 1ère ligne
+    printf("Le numero de phrase est :%d\n ",listenoeud->numero_phrase);
+
+
     FILE *fptxt;
     fptxt=fopen(filename,"r");
 
@@ -129,9 +137,10 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
         
         if (ch == '.')
             {
-                
-                nouveau_noeud=ajouterNoeuds(&listenoeud,num_phrase);
+                ajouterNoeuds(&listenoeud,num_phrase);
                 num_phrase++;
+                //printf("Le numero de phrase est :%d\n ",nouveau_noeud->numero_phrase);
+
                         //printf("test5\n");
 
 
@@ -143,9 +152,10 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
 
                 in_word = 0;
                 printf("%s\n",mot_phrase);
+                //nouveau_noeud->listemots->mot=malloc(0);
 
-                ajouterMots(&(nouveau_noeud->listemots),mot_phrase);
-                printf("\nle mot ajoutée dans index est : %s\n\n",nouveau_noeud->listemots->mot);
+                ajouterMots(&(listenoeud->listemots),mot_phrase);
+                printf("\nle mot ajoutée dans index est : %s\n\n",listenoeud->listemots->mot);
                 mot_phrase=malloc(0);
                         //printf("test4\n");
                 nb_char_mot=0;
@@ -170,8 +180,10 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
         fclose(fptxt);
     }
 
-    
-    return nouveau_noeud;
+    printf("Le 1er mot est : %s\n",listenoeud->listemots->mot);
+    printf("Le 2ème mot est : %s\n",listenoeud->listemots->suivant->mot); // FIXME n'affiche rien
+
+    return num_phrase;
 
 }
 
@@ -197,15 +209,18 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
 void affichage_Noeud(listeNoeud listenoeud){
     
    p_Noeud* noeudEnCours;
-   p_Mot* liste_de_mots = NULL;
+   listeMots liste_de_mots = NULL;
    noeudEnCours = listenoeud;
-   while (listenoeud->suivant!=NULL)
+   printf("\ntest1\n");
+   while (listenoeud!=NULL)
    {
+        printf("\ntest2\n");
        printf("Phrase %d : \n\n",noeudEnCours->numero_phrase);
        liste_de_mots = noeudEnCours->listemots;
        printf("Liste des mots : \n\n");
-       while (liste_de_mots->suivant!=NULL) 
+       while (liste_de_mots!=NULL) 
        {
+           printf("\ntest3\n");
            printf("%s\n",liste_de_mots->mot);
            liste_de_mots=liste_de_mots->suivant;
            printf("\n");

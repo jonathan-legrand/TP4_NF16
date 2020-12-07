@@ -87,10 +87,6 @@ int indexer_fichier(t_Index *index, char *filename)
                     nbr_mots_different++;
                     nouveau_noeud = ajouter_noeud(index,noeud);
 
-                    if(nouveau_noeud->positions==NULL){
-                        printf("Erreur : c'est vraiment de la merde\n");
-                    }
-
                     ajouter_position(nouveau_noeud->positions,num_ligne,ordre,num_phrase);
                     nouveau_noeud->nb_occurences++;
                 }
