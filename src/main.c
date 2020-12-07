@@ -10,6 +10,7 @@
 #include "../include/verifier_equilibre.h"
 #include "../include/rechercher_mot.h"
 #include "../include/chaines.h"
+#include "../include/equilibrer_index.h"
 
 
 
@@ -117,6 +118,7 @@
                     break;
 
                 case EQUILIBRER:
+                        equilibrer_index(monIndex);
                     break;
 
                 case QUITTER:
