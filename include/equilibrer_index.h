@@ -7,5 +7,5 @@
 
 typedef char** tableau;
 t_Index* equilibrer_index(t_Index *index);
-void stockage_mots (tableau mots, t_Noeud *noeud, int id);
+//void stockage_mots (t_noeud *noeud, tableau mots, int id);
 #endif   /* ----- #ifndef equilibrer_index_INC  ----- */
