@@ -11,6 +11,7 @@
 #include "../include/rechercher_mot.h"
 #include "../include/chaines.h"
 #include "../include/equilibrer_index.h"
+#include "../include/indexer_fichier_bis.h"
 
 
 
@@ -39,6 +40,7 @@
         char nomFichier[20];
         t_Index* monIndex = creer_index(); 
         int nbr_mots;
+        listeNoeud* listenoeud = NULL;
 
         //Déclarations case rechercher
         char mot_recherche[TAILLE_MAX];
@@ -115,6 +117,9 @@
                     break;
 
                 case AFFICHER_OCCURENCES:
+                    ajouterNoeuds(&(listenoeud), "fichier_equilibre.txt");
+                    printf("\n\nAffichage\n\n");
+                    affichage_Noeud(listenoeud);
                     break;
 
                 case EQUILIBRER:
