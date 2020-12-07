@@ -67,11 +67,11 @@ p_Mot* ajouterMots(listeMots* liste_de_mots, char* mot){
     {
         //printf("test2\n");
 
-        nouveau_mot_phrase->mot = strdup (mot);
-        //printf("\nmot ajouté : %s\n",nouveau_mot_phrase->mot);
+        nouveau_mot_phrase->mot = mot;
+        printf("\nmot ajouté : %s\n",nouveau_mot_phrase->mot);
         nouveau_mot_phrase->suivant = liste_de_mots;
         liste_de_mots=nouveau_mot_phrase;
-                //printf("test3\n");
+        //printf("test3\n");
 
         return nouveau_mot_phrase;
     }
@@ -81,7 +81,18 @@ p_Mot* ajouterMots(listeMots* liste_de_mots, char* mot){
     }
 }
 
-p_Noeud* ajouterNoeuds (listeNoeud* listenoeud, char *filename)
+p_Noeud* ajouterNoeuds(listeNoeud* listenoeud, int num_phrase)
+{
+    p_Noeud* nouveau_noeud=creer_noeud_bis();
+    nouveau_noeud->numero_phrase=num_phrase;
+
+    nouveau_noeud->suivant = listenoeud;
+    listenoeud=nouveau_noeud;
+    return nouveau_noeud;
+
+}
+
+int indexer_fichier_bis(listeNoeud listenoeud, char *filename)
 {
     
     //p_Noeud* noeud_phrase = creer_noeud_bis();
@@ -89,7 +100,7 @@ p_Noeud* ajouterNoeuds (listeNoeud* listenoeud, char *filename)
     //p_Noeud *abr = index->racine;
 
     p_Noeud* nouveau_noeud;
-    nouveau_noeud=creer_noeud_bis();
+    //nouveau_noeud=creer_noeud_bis();
 
     char *mot_phrase = malloc(sizeof(0));
     int num_ligne = 1;
@@ -116,7 +127,16 @@ p_Noeud* ajouterNoeuds (listeNoeud* listenoeud, char *filename)
             nb_char_mot++;
         }
         
-        
+        if (ch == '.')
+            {
+                
+                nouveau_noeud=ajouterNoeuds(&listenoeud,num_phrase);
+                num_phrase++;
+                        //printf("test5\n");
+
+
+            }
+
         if(ch == ' ' || ch == '\0' || ch == '\n'|| ch=='.') {
 
             if (in_word) {
@@ -133,19 +153,6 @@ p_Noeud* ajouterNoeuds (listeNoeud* listenoeud, char *filename)
 
             }
 
-            if (ch == '.')
-            {
-                nouveau_noeud->numero_phrase=num_phrase;
-                num_phrase++;
-                        //printf("test5\n");
-
-                //nouveau_noeud->suivant=creer_noeud_bis();
-                nouveau_noeud->suivant = listenoeud;
-                listenoeud=nouveau_noeud;
-                free(nouveau_noeud);
-                nouveau_noeud=creer_noeud_bis();
-
-            }
             
             if(ch == '\0' || ch == '\n')
             {
