@@ -32,7 +32,7 @@ afficher_noeud ( t_Noeud *noeud, char lettre )
             printf("|----(l:%d, o:%d, p:%d)\n",position->numero_ligne,position->ordre,position->numero_phrase);
             position = position->suivant;
         } while(position!=NULL);
-        //TODO Décommenter dès que les listes de positions seront réparées, ça fait planter l'exécution pour l'instant
+        printf("|\n");
 
     }
 

@@ -42,7 +42,6 @@
 
         //Déclarations case rechercher
         char mot_recherche[TAILLE_MAX];
-        char mot_entre[TAILLE_MAX];
         t_Noeud *noeud_recherche;
 
     
@@ -101,8 +100,6 @@
                     break;
 
                 case RECHERCHER:
-                    //scanf("%s",mot_entre);
-                    //strtolower(mot_recherche,mot_entre);
                     printf("Entrez le mot à rechercher : ");
                     scanf("%s",mot_recherche);
                     noeud_recherche = rechercher_mot(monIndex,mot_recherche);

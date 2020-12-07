@@ -20,7 +20,6 @@ t_Noeud* creer_noeud()
 {
     t_Noeud* new_noeud = malloc(sizeof(t_Noeud));
     new_noeud->positions = creer_liste_positions();
-    printf("adresse liste de positions (dans creer_noeud) : %p\n",new_noeud->positions);
     
     new_noeud->filsGauche=NULL;
     new_noeud->filsDroit=NULL;
@@ -106,8 +105,6 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         index->racine=creer_noeud();
         // it's a deep copy
         index->racine->mot = strdup (noeud->mot);
-        printf("adresse liste de positions (dans ajouter_noeud cas racine) : %p\n",index->racine->positions); //TODO Ça vient de là le problème, à mon avis, la liste de positions vaut nil à cet endroit là
-        printf("test ajout racine : mot = %s\n",index->racine->mot);
         return index->racine;
     }
 
@@ -144,7 +141,7 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
         }
         else if(cmpChar>0) {  //FIXME j'ai inversé demander confirmation ???
             // noeudPrecedent->mot est lexicalement plus grand que mot
-            printf("\nLe noeud a bien été ajouté");
+            printf("\nLe noeud a bien été ajouté\n");
             //noeudPrecedent->filsGauche = noeud;
             noeudPrecedent->filsGauche=creer_noeud();
             noeudPrecedent->filsGauche->mot = strdup (noeud->mot);
