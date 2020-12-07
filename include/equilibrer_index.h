@@ -3,9 +3,12 @@
 #include "structure.h"
 #include "chaines.h"
 #include "indexer_fichier.h"
+#include "afficher_index.h"
+#include "ajouter_noeud.h"
+#include "verifier_equilibre.h"
 #define TAILLE_MAX 25
 
 typedef char** tableau;
 t_Index* equilibrer_index(t_Index *index);
-void stockage_mots (tableau mots, t_Noeud *noeud, int id);
+//void stockage_mots (t_noeud *noeud, tableau mots, int id);
 #endif   /* ----- #ifndef equilibrer_index_INC  ----- */

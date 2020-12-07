@@ -5,4 +5,5 @@
 
 t_Noeud* ajouter_noeud(t_Index *index, t_Noeud *noeud);
 t_Noeud *rechercher_noeud(t_Index *index, t_Noeud *noeud);
+t_Noeud* creer_noeud();
 #endif   /* ----- #ifndef ajouter_noeud_INC  ----- */

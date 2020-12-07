@@ -44,6 +44,9 @@
         char mot_recherche[TAILLE_MAX];
         t_Noeud *noeud_recherche;
 
+        //Déclarations case équilibrer
+        t_Index index_equilibre;
+
     
         do {
 
@@ -115,7 +118,7 @@
                     break;
 
                 case EQUILIBRER:
-                        equilibrer_index(monIndex);
+                        monIndex = equilibrer_index(monIndex);
                     break;
 
                 case QUITTER:
