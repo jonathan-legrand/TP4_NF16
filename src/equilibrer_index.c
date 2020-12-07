@@ -51,8 +51,24 @@ void stockage_noeuds (t_noeud *noeud, t_Noeud *noeuds[25])
 t_Noeud *creer_abr ( t_Noeud *noeuds[TAILLE_MAX], int debut, int fin )
 
 {
+    if (debut>fin) return NULL;
     int milieu = (debut+fin)/2;
-    return NULL;
+    printf("milieu = %d ",milieu);
+
+    t_Noeud *racine = creer_noeud();
+    if (racine == NULL){
+        printf("Erreur lors de la création de la racine\n");
+        exit(EXIT_FAILURE);
+    }
+    racine->positions = noeuds[milieu]->positions;
+    racine->mot = strdup(noeuds[milieu]->mot);
+    racine->nb_occurences = noeuds[milieu]->nb_occurences;
+
+    
+    racine->filsGauche = creer_abr(noeuds,debut,milieu-1);
+    racine->filsDroit = creer_abr(noeuds,milieu+1,fin);
+
+    return racine;
 }		/* -----  end of function creer_abr  ----- */
 
 
@@ -88,8 +104,17 @@ t_Index *equilibrer_index (t_Index *index)
     stockage_noeuds(index->racine,noeuds);
     afficher_tableau(noeuds,nombre_noeuds);
 
+    t_noeud *abr;
+    abr = creer_abr(noeuds,0,nombre_noeuds-1);
 
-    creer_abr(noeuds,0,nombre_noeuds);
+    //On vérifie si l'arbre créé est équilibré
+    if(est_Equilibre(abr)){
+        index_equilibre->racine = abr;
+        return index_equilibre;
+    } else {
+        printf("Erreur : l'arbre créé n'est pas équilibré\n");
+        return NULL;
+    }
+    
 
-    return index_equilibre;
 }		/* -----  end of function equilibrer_index  ----- */
