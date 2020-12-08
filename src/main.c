@@ -11,7 +11,9 @@
 #include "../include/rechercher_mot.h"
 #include "../include/chaines.h"
 #include "../include/equilibrer_index.h"
-#include "../include/indexer_fichier_bis.h"
+#include "../include/indexer_fichier_2.h"
+
+
 
 
 
@@ -40,7 +42,7 @@
         char nomFichier[20];
         t_Index* monIndex = creer_index(); 
         int nbr_mots;
-        listeNoeud maListenoeud = creer_noeud_bis();
+        listeNoeudPhrase maListePhrases;
 
         //Déclarations case rechercher
         char mot_recherche[TAILLE_MAX];
@@ -73,10 +75,10 @@
             {
                 case CHARGER_FICHIER:
                     printf("Choix 1\n");
-                    /*printf ("Nom du fichier : ");
+                    printf ("Nom du fichier : ");
                     fflush(stdin);
-                    scanf("%s",nomFichier);*/
-                    nbr_mots = indexer_fichier(monIndex, "fichier2.txt");
+                    scanf("%s",nomFichier);
+                    nbr_mots = indexer_fichier(monIndex, nomFichier);
                     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     
                     break;
                     
@@ -117,9 +119,9 @@
                     break;
 
                 case AFFICHER_OCCURENCES:
-                    indexer_fichier_bis(maListenoeud, "fichier_equilibre.txt");
+                    indexer_fichier_bis(&maListePhrases, "fichier_equilibre.txt");
                     printf("\n\nAffichage\n\n");
-                    affichage_Noeud(maListenoeud);
+                    affichage_Noeud(maListePhrases);
                     break;
 
                 case EQUILIBRER:

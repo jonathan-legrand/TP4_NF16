@@ -35,7 +35,7 @@ void stockage_noeuds (t_noeud *noeud, t_Noeud *noeuds[25])
         return;
     stockage_noeuds(noeud->filsGauche, noeuds);
     //printf("id = %d mot = %s \t",id++,noeud->mot);
-    memcpy(noeuds[id++],noeud,sizeof(t_Noeud));
+    memcpy(noeuds[id++],noeud,sizeof(t_Noeud)); //TODO affecter pointeur
     stockage_noeuds(noeud->filsDroit, noeuds);
 
 
