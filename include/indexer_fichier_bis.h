@@ -1,4 +1,4 @@
-#ifndef  indexer_fichier_bis_H
+/*#ifndef  indexer_fichier_bis_H
 #define  indexer_fichier_bis_H
 #include "structure.h"
 
@@ -11,4 +11,5 @@ int indexer_fichier_bis(listeNoeud listenoeud, char *filename);
 
 void affichage_Noeud(listeNoeud listenoeud);
 
-#endif   
+#endif 
+*/

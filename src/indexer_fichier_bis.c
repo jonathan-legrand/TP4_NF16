@@ -4,6 +4,7 @@
 #include "../include/creer_liste_positions.h"
 #include "../include/chaines.h"
 #include "../include/rechercher_mot.h"
+#include "../include/indexer_fichier_2.h"
 
 
 #include <stdio.h>
@@ -16,7 +17,7 @@
  * @return Revoie le nombre de mots lus
  */
 
-p_Index* creer_index_bis(){
+/*p_Index* creer_index_bis(){
     p_Index* mon_nouveau_index = malloc(sizeof(p_Index));
     if (!mon_nouveau_index)
     {
@@ -222,3 +223,5 @@ void affichage_Noeud(listeNoeud listenoeud){
 // TODO il faut créer une fonction de recherche qui prend on entrée le numero de la phrase
 // TODO pour moi pas besoin de creer finalement in autre index genre on creer une liste qui s'appelle listephrase qui contient les mots de chaque phrase
 // TODO occurence prend index en pointeur
+
+*/
