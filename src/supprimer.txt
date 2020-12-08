@@ -1,0 +1,4 @@
+.ajouter_position.c.swp
+.cmp_ordre_lexicometrique.c.swp
+.creer_liste_positions.c.swp
+.rechercher_mot.c.swp

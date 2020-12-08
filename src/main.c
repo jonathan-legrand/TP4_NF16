@@ -49,7 +49,6 @@
         t_Noeud *noeud_recherche;
 
         //Déclarations case équilibrer
-        t_Index index_equilibre;
 
     
         do {
@@ -129,6 +128,7 @@
                     break;
 
                 case QUITTER:
+                    free(monIndex);
                     break;
 
                 default:
