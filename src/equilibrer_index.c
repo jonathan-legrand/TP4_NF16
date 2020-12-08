@@ -13,7 +13,7 @@ int id = 0;
     void
 afficher_tableau ( t_Noeud *noeuds[25], int taille )
 {
-    
+
     for ( int i = 0; i < taille; i ++ ) {
         //printf("%s\t",noeuds[i]->mot);
         afficher_noeud(noeuds[i],toupper(noeuds[i]->mot[0]));
@@ -28,14 +28,14 @@ afficher_tableau ( t_Noeud *noeuds[25], int taille )
  *  Description:  
  * =====================================================================================
  */
-void stockage_noeuds (t_noeud *noeud, t_Noeud *noeuds[25])
+void stockage_noeuds (t_noeud *noeud, t_Noeud **noeuds)
 {
 
     if(noeud == NULL)
         return;
     stockage_noeuds(noeud->filsGauche, noeuds);
     //printf("id = %d mot = %s \t",id++,noeud->mot);
-    memcpy(noeuds[id++],noeud,sizeof(t_Noeud));
+    noeuds[id++] = noeud;
     stockage_noeuds(noeud->filsDroit, noeuds);
 
 
@@ -49,7 +49,7 @@ void stockage_noeuds (t_noeud *noeud, t_Noeud *noeuds[25])
  *  Description:  
  * =====================================================================================
  */
-t_Noeud *creer_abr ( t_Noeud *noeuds[TAILLE_MAX], int debut, int fin )
+t_Noeud *creer_abr ( t_Noeud **noeuds, int debut, int fin )
 
 {
     if (debut>fin) return NULL;
@@ -65,7 +65,7 @@ t_Noeud *creer_abr ( t_Noeud *noeuds[TAILLE_MAX], int debut, int fin )
     racine->mot = strdup(noeuds[milieu]->mot);
     racine->nb_occurences = noeuds[milieu]->nb_occurences;
 
-    
+
     racine->filsGauche = creer_abr(noeuds,debut,milieu-1);
     racine->filsDroit = creer_abr(noeuds,milieu+1,fin);
 
@@ -86,27 +86,29 @@ t_Index *equilibrer_index (t_Index *index)
     index_equilibre = creer_index(); 
 
 
-    //Initialisation du tableau
-    //char mot[TAILLE_MAX]; 
+    //Initialisation du tableau de noeuds
     int nombre_noeuds = index->nb_mots_differents;
     printf("%d\n",nombre_noeuds);
-    t_Noeud *noeuds[TAILLE_MAX];
-    int i = 0;
-    for ( i = 0; i < nombre_noeuds; i += 1 ) {
-        noeuds[i] = malloc(sizeof(t_Noeud));
-    }
-    //tableau noeuds = malloc(nombre_noeuds*sizeof(mot));
-    //
+    t_Noeud **noeuds = malloc(nombre_noeuds*sizeof(t_Noeud*));
     
-    //for ( int i = 0; i < nombre_noeuds; i += 1 ) strcpy(noeuds[i],"tesmorts");
-    //afficher_tableau(noeuds,nombre_noeuds);
-
-    //Stockage des nombres dans le tableau
+    //Stockage des noeuds dans le tableau
     stockage_noeuds(index->racine,noeuds);
     afficher_tableau(noeuds,nombre_noeuds);
 
-    t_noeud *abr;
+    //Création de l'abr équilibré
+    printf("Création de l'abr équilibré...");
+    t_noeud *abr = NULL;
     abr = creer_abr(noeuds,0,nombre_noeuds-1);
+    if(abr == NULL){
+        printf("Erreur : l'abr n'a pas été créé\n");
+        return NULL;
+    }
+    printf(" Terminée\n");
+
+
+    //Libération de la mémoire allouée dynamiquement pour le tableau de noeuds
+    free(noeuds);
+    
 
     //On vérifie si l'arbre créé est équilibré
     if(est_Equilibre(abr)){
@@ -120,5 +122,6 @@ t_Index *equilibrer_index (t_Index *index)
         return NULL;
     }
     
+    return NULL;
 
 }		/* -----  end of function equilibrer_index  ----- */

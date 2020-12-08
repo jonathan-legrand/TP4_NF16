@@ -47,7 +47,6 @@
         t_Noeud *noeud_recherche;
 
         //Déclarations case équilibrer
-        t_Index index_equilibre;
 
     
         do {
@@ -76,7 +75,7 @@
                     /*printf ("Nom du fichier : ");
                     fflush(stdin);
                     scanf("%s",nomFichier);*/
-                    nbr_mots = indexer_fichier(monIndex, "fichier2.txt");
+                    nbr_mots = indexer_fichier(monIndex, "test_2.txt");
                     printf("\n\n Voici le nb de mot : %d\n\n",nbr_mots);                     
                     break;
                     
@@ -127,6 +126,7 @@
                     break;
 
                 case QUITTER:
+                    free(monIndex);
                     break;
 
                 default:
