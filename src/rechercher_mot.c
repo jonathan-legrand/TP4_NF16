@@ -13,11 +13,10 @@
 
 t_Noeud* rechercher_mot(t_Index *index, char *mot){
     t_Noeud* noeudEnCours = index->racine;
-    char *nouvChaine = malloc(sizeof(0));
-    char *nouvChaine2 = malloc(sizeof(0));
-    int OK = 0;
+    char nouvChaine[25];
+    char nouvChaine2[25];
     int cmpChar;
-    while (!OK && noeudEnCours!=NULL)
+    while (noeudEnCours!=NULL)
     {
         cmpChar = strcmp(strtolower(nouvChaine,noeudEnCours->mot),strtolower(nouvChaine2,mot));
 
@@ -33,19 +32,11 @@ t_Noeud* rechercher_mot(t_Index *index, char *mot){
         }
         else
         {
-            OK=1;
+            return noeudEnCours;
         }
     }
-
-    if (OK)
-    {
-        return noeudEnCours;
-    }
-    else
-    {
-        printf("Le noeud n'existe pas\n");
-        return NULL;
-    }
+    printf("Le noeud n'existe pas\n");
+    return NULL;
 
 }
 
