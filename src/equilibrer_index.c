@@ -1,7 +1,5 @@
 #include "../include/equilibrer_index.h"
 // TODO Mettre à jour les headers
-// TODO Vérifier si l'index est déjà équilibré
-// FIXME Les caractéristiques du nouvel index
 int id = 0;
 
 /* 
@@ -10,8 +8,7 @@ int id = 0;
  *  Description:  
  * =====================================================================================
  */
-    void
-afficher_tableau ( t_Noeud *noeuds[25], int taille )
+void afficher_tableau ( t_noeud **noeuds, int taille )
 {
 
     for ( int i = 0; i < taille; i ++ ) {
@@ -81,6 +78,14 @@ t_Noeud *creer_abr ( t_Noeud **noeuds, int debut, int fin )
  */
 t_Index *equilibrer_index (t_Index *index)
 {
+    //On vérifie si l'index fourni est déjà équilibré
+    if(est_Equilibre(index->racine)){
+        printf("L'index fourni est déjà équilibré, rien n'a été fait\n");
+        return index;
+    }
+    
+
+
     //Création du nouvel index 
     t_Index *index_equilibre;
     index_equilibre = creer_index(); 
