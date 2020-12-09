@@ -20,8 +20,8 @@ struct t_position
 {
     int numero_ligne;
     int ordre;
-    char* phrase; // TODO pointeur ??
-    int numero_phrase;
+    char* phrase;
+	int numero_phrase;
     t_Position* suivant;
 };
 
