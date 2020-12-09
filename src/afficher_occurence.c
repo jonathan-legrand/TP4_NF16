@@ -1,4 +1,4 @@
-#include "../include/indexer_fichier_bis.h"
+#include "../include/afficher_occurence.h"
 #include "../include/ajouter_noeud.h"
 #include "../include/ajouter_position.h"
 #include "../include/creer_liste_positions.h"
@@ -7,10 +7,10 @@
 
 
 #include <stdio.h>
-#define TAILLE_MAX 5000
+#define TAILLE_MAX 10000
 
 
-/*p_Noeud* creer_noeud_phrase(){
+p_Noeud* creer_noeud_phrase(){
     p_Noeud* mon_nouveau_noeud_phrase = malloc(sizeof(p_Noeud));
     if (!mon_nouveau_noeud_phrase)
     {
@@ -23,11 +23,12 @@
     
     return mon_nouveau_noeud_phrase;
 }
-*/
+
 
 p_Noeud* ajouterNoeudPhrase(listeNoeudPhrase* listePhrases, int num_phrase,char *phrase)
 {
-    p_Noeud* nouveau_noeud_phrase=malloc(sizeof(p_Noeud));
+    //p_Noeud* nouveau_noeud_phrase=malloc(sizeof(p_Noeud));
+    p_Noeud* nouveau_noeud_phrase=creer_noeud_phrase();
 
     if (nouveau_noeud_phrase!=NULL)
     {
@@ -45,97 +46,7 @@ p_Noeud* ajouterNoeudPhrase(listeNoeudPhrase* listePhrases, int num_phrase,char 
 
 }
 
-int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
-{
-    
 
-
-    char phrase [TAILLE_MAX];
-    int num_ligne = 1;
-    int num_phrase = 1;
-    char ch;
-    int nb_char_phrase = 0;
-
-
-
-    FILE *fptxt;
-    fptxt=fopen(filename,"r");
-
-    if (fptxt==NULL)
-    {
-        printf("erreur lecture fichier");
-    }
-    else
-    {
-        while ((ch = fgetc(fptxt)) != EOF) {
-        
-        if (isalnum(ch)||ch == ' ' || ch == '\0' || ch == '\n'|| ch=='.')
-        {   
-            //printf("Carac : %c\n",ch);
-            //*(phrase+ nb_char_phrase)=ch;
-            phrase[nb_char_phrase]=ch;
-            nb_char_phrase++;
-        }
-        
-        if (ch == '.')
-            {
-                printf("La phrase lu est :%s\n ",phrase);
-                ajouterNoeudPhrase(listePhrases,num_phrase,phrase);
-                //printf("Le numero de phrase est :%d\n ",listePhrases->numero_phrase);
-
-                num_phrase++;
-                printf("La phrase est :%s\n ",(*listePhrases)->phrase);
-                strcpy(phrase,"");
-                nb_char_phrase=0;
-                //printf("test5\n");
-                //phrase = malloc(sizeof(0));
-
-            }
-
-
-            if(ch == '\0' || ch == '\n')
-            {
-                num_ligne++;
-                strcpy(phrase,"");
-                // TODO A rajouter
-            } 
-        
-        } 
-
-        fclose(fptxt);
-    }       
-
-    //printf("Le 1er mot est : %s\n",listePhrases->phrase);
-    //printf("Le 2ème mot est : %s\n",listePhrases->suivant->phrase); // FIXME n'affiche rien
-
-    //affichage_Noeud(listePhrases);
-
-
-    return num_phrase;
-
-
-    }
-
-    
-
-void affichage_Noeud(listeNoeudPhrase listePhrases){
-    
-   p_Noeud* phraseEnCours;
-   phraseEnCours = listePhrases;
-   //printf("\ntest1\n");
-   while (phraseEnCours!=NULL)
-   {
-        //printf("\ntest2\n");
-       printf("Phrase %d est : %s \n\n",phraseEnCours->numero_phrase,phraseEnCours->phrase);
-       phraseEnCours=phraseEnCours->suivant;
-       printf("\n");
-   }
-    
-}
-
-
-
-/*
 int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
 {
     char phrase [TAILLE_MAX];
@@ -163,7 +74,7 @@ int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
         if (ch == '.')
             {
                 ajouterNoeudPhrase(listePhrases,num_phrase,phrase);
-
+                printf("La phrase est :%s\n ",(*listePhrases)->phrase);
                 num_phrase++;
                 strcpy(phrase,""); // on vide la phrase
                 nb_char_phrase=0;
@@ -174,9 +85,27 @@ int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
     }       
     return num_phrase-1;
 }
-*/
 
-/*int updatePosition (t_Noeud *noeud, listeNoeudPhrase listePhrase)
+void affichage_Noeud(listeNoeudPhrase listePhrases){
+    
+   p_Noeud* phraseEnCours;
+   phraseEnCours = listePhrases;
+   while (phraseEnCours!=NULL)
+   {
+       printf("Phrase %d est : %s \n\n",phraseEnCours->numero_phrase,phraseEnCours->phrase);
+       phraseEnCours=phraseEnCours->suivant;
+       printf("\n");
+   }
+}
+
+/* 
+ * ===  FUNCTION  ===============================================================================
+ *         Name:  updatePosition
+ *  Description: mise à jour des positions de chaque noeud en remplissant le nouveau champ "phrase"
+ * ==============================================================================================
+ */
+
+int updatePosition (t_Noeud *noeud, listeNoeudPhrase listePhrase)
 {
  
     if(noeud == NULL){
@@ -203,7 +132,6 @@ int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
     return 1;
 }
 
-//updatePosition (index->racine, listeNoeudPhrase listePhrase)
 
  void afficher_occurences_mot(t_Index *index, char *mot)
  {
@@ -219,4 +147,3 @@ int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
     }
  }
 
-*/

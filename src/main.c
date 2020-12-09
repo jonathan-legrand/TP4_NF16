@@ -11,7 +11,7 @@
 #include "../include/rechercher_mot.h"
 #include "../include/chaines.h"
 #include "../include/equilibrer_index.h"
-#include "../include/indexer_fichier_2.h"
+#include "../include/afficher_occurence.h"
 
 
 
@@ -118,9 +118,13 @@
                     break;
 
                 case AFFICHER_OCCURENCES:
-                    indexer_fichier_bis(&maListePhrases, "fichier_equilibre.txt");
-                    printf("\n\nAffichage\n\n");
-                    affichage_Noeud(maListePhrases);
+                    printf("\nNous sommes navrés de vous annoncer que nous n'avons pas réussi à implémenter cette fonction correctement.\n Nous vous invitons à regarder le fichier afficher_occurence.c qui rassemble l'ensemble des fonctions que nous aurions voulu implémenter.\n");
+                    //indexer_fichier_bis(&maListePhrases, "fichier_equilibre.txt");
+                    //updatePosition (monIndex->racine, maListePhrases);
+                    //strcpy(mot_recherche,""); // si l'utilisateur à fait un case RECHERCHER avant
+                    //printf("Entrez le mot à rechercher : ");
+                    //scanf("%s",mot_recherche);
+                    //afficher_occurences_mot(monIndex, mot_recherche);
                     break;
 
                 case EQUILIBRER:
