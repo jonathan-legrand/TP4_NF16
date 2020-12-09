@@ -15,8 +15,6 @@
 
 
 
-
-
 #define CHARGER_FICHIER 1
 #define CARACTERISTIQUES 2
 #define AFFICHER_INDEX 3
@@ -39,10 +37,10 @@
     {
 
         int choix;
-        char nomFichier[20];
+        char nomFichier[TAILLE_MAX];
         t_Index* monIndex = creer_index(); 
         int nbr_mots;
-        listeNoeudPhrase maListePhrases;
+        //listeNoeudPhrase maListePhrases;
 
         //Déclarations case rechercher
         char mot_recherche[TAILLE_MAX];
@@ -73,7 +71,6 @@
             switch(choix)
             {
                 case CHARGER_FICHIER:
-                    printf("Choix 1\n");
                     printf ("Nom du fichier : ");
                     fflush(stdin);
                     scanf("%s",nomFichier);
@@ -83,7 +80,6 @@
                     
 
                 case CARACTERISTIQUES:
-                    printf("Choix 2\n");
                     if(est_Equilibre(monIndex->racine))
                     {
                         printf("\nL'index est équilibré\n");
@@ -99,7 +95,6 @@
                     break;
 
                 case AFFICHER_INDEX:
-                    printf("Choix 3\n");
                     
                     afficher_index(monIndex);
                     
@@ -114,11 +109,11 @@
                     } else {
                         afficher_noeud(noeud_recherche,toupper(mot_recherche[0]));          
                     }
-
                     break;
 
                 case AFFICHER_OCCURENCES:
-                    printf("\nNous sommes navrés de vous annoncer que nous n'avons pas réussi à implémenter cette fonction correctement.\n Nous vous invitons à regarder le fichier afficher_occurence.c qui rassemble l'ensemble des fonctions que nous aurions voulu implémenter.\n");
+                    printf("\nNous sommes navrés de vous annoncer que nous n'avons pas réussi à implémenter cette fonction correctement.\n"
+                    "Nous vous invitons à regarder le fichier afficher_occurence.c qui rassemble \nl'ensemble des fonctions que nous aurions voulu implémenter.\n\n");
                     //indexer_fichier_bis(&maListePhrases, "fichier_equilibre.txt");
                     //updatePosition (monIndex->racine, maListePhrases);
                     //strcpy(mot_recherche,""); // si l'utilisateur à fait un case RECHERCHER avant
@@ -143,7 +138,6 @@
         return EXIT_SUCCESS;
 }				/* ----------  end of function main  ---------- */
 
-/* Conseil pour la manipulation des chaines de caractères. Les bibliothèques C contiennent plusieurs fonctions qui vous seront utiles lors du TP, vous avez <ctype.h> pour les fonctions sur les caractères et <string.h> pour les chaines de caractères. Avant d'implémenter vos propres traitements sur les chaines de caractères, vérifiez s'il existe des fonctions C qui le font. Ca vous éviteras du travail en plus. Si elles ne sont pas dans ces deux bibliothèques, elle peuvent être dans une autre. Google, stackoverflow et la documentation du langage C sont vos amis https://fr.cppreference.com/w/c Lien vers la documentation C 
-*/
+
 
 

@@ -1,5 +1,4 @@
 #include "../include/equilibrer_index.h"
-// TODO Mettre à jour les headers
 int id = 0;
 
 /* 
@@ -12,7 +11,6 @@ void afficher_tableau ( t_noeud **noeuds, int taille )
 {
 
     for ( int i = 0; i < taille; i ++ ) {
-        //printf("%s\t",noeuds[i]->mot);
         afficher_noeud(noeuds[i],toupper(noeuds[i]->mot[0]));
     }
     printf("\n\n");
@@ -34,8 +32,6 @@ void stockage_noeuds (t_noeud *noeud, t_Noeud **noeuds)
     noeuds[id++] = noeud;
     stockage_noeuds(noeud->filsDroit, noeuds);
 
-
-
 }		
 
 
@@ -50,7 +46,6 @@ t_Noeud *creer_abr ( t_Noeud **noeuds, int debut, int fin )
 {
     if (debut>fin) return NULL;
     int milieu = (debut+fin)/2;
-    //printf("milieu = %d ",milieu);
 
     t_Noeud *racine = creer_noeud();
     if (racine == NULL){
@@ -83,7 +78,6 @@ t_Index *equilibrer_index (t_Index *index)
         return index;
     }
     
-
 
     //Création du nouvel index 
     t_Index *index_equilibre;

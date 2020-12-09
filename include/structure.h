@@ -55,6 +55,4 @@ typedef struct t_index
 typedef t_index t_Index;
 
 
-
-
 #endif

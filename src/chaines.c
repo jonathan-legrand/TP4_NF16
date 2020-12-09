@@ -1,6 +1,5 @@
 #include "../include/chaines.h"
 
-// @batp380 Je sais pas si j'en ai oublié ou pas mais voilà c'est déjà plus propre
 
 char * strtolower( char * destination, char * source ) {
     char *  nouvelleChaine = destination;

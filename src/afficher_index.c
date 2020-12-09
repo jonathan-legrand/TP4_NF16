@@ -42,7 +42,7 @@ afficher_noeud ( t_Noeud *noeud, char lettre )
 /* 
  * ===  FUNCTION  ======================================================================
  *         Name:  parcours_arbre
- *  Description:  
+ *  Description:  parcours infixe avec un paramètre lettre en plus du noeud
  * =====================================================================================
  */
     void
@@ -71,13 +71,7 @@ void afficher_index ( t_Index *index )
         printf("Erreur : index vide\n");
         exit(EXIT_FAILURE);
     }
-/*     for ( int i = 'a'; i <= 'z'; i ++ ) {
- *         printf("%d\n",i);
- * 
- * 
- *     }
- */
-    
+
     for ( char i = 'A'; i <= 'Z'; i ++ ) {
         printf("%c\n",i);
         parcours_arbre(abr,i);

@@ -35,7 +35,6 @@ t_Noeud* rechercher_mot(t_Index *index, char *mot){
             return noeudEnCours;
         }
     }
-    printf("Le noeud n'existe pas\n");
     return NULL;
 
 }

@@ -1,7 +1,4 @@
 #include "../include/afficher_occurence.h"
-#include "../include/ajouter_noeud.h"
-#include "../include/ajouter_position.h"
-#include "../include/creer_liste_positions.h"
 #include "../include/chaines.h"
 #include "../include/rechercher_mot.h"
 
@@ -27,7 +24,6 @@ p_Noeud* creer_noeud_phrase(){
 
 p_Noeud* ajouterNoeudPhrase(listeNoeudPhrase* listePhrases, int num_phrase,char *phrase)
 {
-    //p_Noeud* nouveau_noeud_phrase=malloc(sizeof(p_Noeud));
     p_Noeud* nouveau_noeud_phrase=creer_noeud_phrase();
 
     if (nouveau_noeud_phrase!=NULL)
@@ -74,7 +70,6 @@ int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
         if (ch == '.')
             {
                 ajouterNoeudPhrase(listePhrases,num_phrase,phrase);
-                printf("La phrase est :%s\n ",(*listePhrases)->phrase);
                 num_phrase++;
                 strcpy(phrase,""); // on vide la phrase
                 nb_char_phrase=0;
@@ -105,6 +100,7 @@ void affichage_Noeud(listeNoeudPhrase listePhrases){
  * ==============================================================================================
  */
 
+/* A noter qu'à la place de cette fonction, nous aurions pu aussi modifier la position directement à partir de l'indexage du fichier*/
 int updatePosition (t_Noeud *noeud, listeNoeudPhrase listePhrase)
 {
  

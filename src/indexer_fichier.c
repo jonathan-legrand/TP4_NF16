@@ -32,10 +32,8 @@ t_Index* creer_index(){
 int indexer_fichier(t_Index *index, char *filename)
 {
     
-    //index->racine->mot=malloc(sizeof(0));
     t_Noeud* noeud=malloc(sizeof(t_Noeud));
     noeud->mot= malloc(sizeof(0));
-    //index->racine->positions = *creer_liste_positions();
     t_Noeud* noeud_trouve;
     ;
     
@@ -63,13 +61,8 @@ int indexer_fichier(t_Index *index, char *filename)
         
         if (isalnum(ch))
         {   
-            //printf("Carac : %c\n",ch);
             *(noeud->mot + nb_char_mot)=ch;
             nb_char_mot++;
-        }
-        else
-        {
-            //printf("Carac non alphanum : %c\n",ch);
         }
         
         if(ch == ' ' || ch == '\0' || ch == '\n'|| ch=='.') {
@@ -79,7 +72,6 @@ int indexer_fichier(t_Index *index, char *filename)
                 in_word = 0;
                 nbr_mots++;
                 ordre++;
-                //printf("\n%s\n\n",noeud->mot);
                 noeud_trouve = rechercher_mot(index,noeud->mot);
                 if (noeud_trouve==NULL)
                 {
@@ -95,12 +87,9 @@ int indexer_fichier(t_Index *index, char *filename)
                     noeud_trouve->nb_occurences++;
                 }
 
-
-                //free(noeud);
                 noeud->mot=malloc(0);
                 
                 nb_char_mot=0;
-
             }
 
             if (ch == '.')

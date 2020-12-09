@@ -21,7 +21,6 @@ t_Position* creer_position()
     return new_position;
 }
 
-// TODO CREER LA PREMIER POSITION de la racine
 int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phrase){
 
     if(listeP==NULL){
@@ -51,7 +50,6 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
     }
 
 
-
     if (listeP->debut == NULL || (ligne!=positionEnCours->numero_ligne) || (ordre!=positionEnCours->ordre) || (num_phrase!=positionEnCours->numero_phrase))
 
 
@@ -76,19 +74,14 @@ int ajouter_position(t_ListePositions *listeP, int ligne, int ordre, int num_phr
         }
 
         listeP->nb_elements++;
-        printf("La position souhaitée a bien été ajoutée\n");
-        //printf("Le nombre d'éléments dans la liste est désormais %d\n",listeP->nb_elements);
         return 1;
 
     }
 
     else
     {
-        printf("La position souhaitée exite déjà\n");
         return 0;
     }
-
-
 
 
 }

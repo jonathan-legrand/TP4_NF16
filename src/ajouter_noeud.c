@@ -101,12 +101,10 @@ t_Noeud* ajouter_noeud ( t_Index *index, t_Noeud *noeud)
             // noeudPrecedent->mot est lexicalement plus petit que mot
             noeudPrecedent->filsDroit=creer_noeud();
             noeudPrecedent->filsDroit->mot = strdup (noeud->mot);
-            printf("\nLe noeud a bien été ajouté\n");
             return noeudPrecedent->filsDroit;
         }
         else if(cmpChar>0) {  
             // noeudPrecedent->mot est lexicalement plus grand que mot
-            printf("\nLe noeud a bien été ajouté\n");
             noeudPrecedent->filsGauche=creer_noeud();
             noeudPrecedent->filsGauche->mot = strdup (noeud->mot);
             return noeudPrecedent->filsGauche;
