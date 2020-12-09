@@ -1,4 +1,4 @@
-#include "../include/indexer_fichier_bis.h"
+/*#include "../include/indexer_fichier_bis.h"
 #include "../include/ajouter_noeud.h"
 #include "../include/ajouter_position.h"
 #include "../include/creer_liste_positions.h"
@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 #define TAILLE_MAX 1000
-
+*/
 /**
  * @brief Indexer un fichier texte.
  * Cette fonction lit le fichier et ajoute tous les mots qu’il contient dans un index. 

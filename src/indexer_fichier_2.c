@@ -135,7 +135,88 @@ void affichage_Noeud(listeNoeudPhrase listePhrases){
 
 
 
+/*
+int indexer_fichier_bis(listeNoeudPhrase* listePhrases, char *filename)
+{
+    char phrase [TAILLE_MAX];
+    int num_phrase = 1; // numéro et nombre de phrases
+    char ch;
+    int nb_char_phrase = 0;
 
+    FILE *fptxt;
+    fptxt=fopen(filename,"r");
 
+    if (fptxt==NULL)
+    {
+        printf("erreur lecture fichier");
+    }
+    else
+    {
+        while ((ch = fgetc(fptxt)) != EOF) {
+        
+        if (isalnum(ch)||ch == ' ' || ch == '\0' || ch == '\n'|| ch=='.')
+        {   
+            phrase[nb_char_phrase]=ch;
+            nb_char_phrase++;
+        }
+        
+        if (ch == '.')
+            {
+                ajouterNoeudPhrase(listePhrases,num_phrase,phrase);
 
+                num_phrase++;
+                strcpy(phrase,""); // on vide la phrase
+                nb_char_phrase=0;
+            }
+        } 
 
+        fclose(fptxt);
+    }       
+    return num_phrase-1;
+}
+*/
+
+/*int updatePosition (t_Noeud *noeud, listeNoeudPhrase listePhrase)
+{
+ 
+    if(noeud == NULL){
+        return 0;
+    }
+    p_Noeud* phraseEnCours = listePhrase;
+    t_Position* positionEnCours = noeud->positions->debut;
+    updatePosition(noeud->filsGauche,listePhrase);
+    while (positionEnCours!=NULL)
+    {
+        while (phraseEnCours!=NULL && phraseEnCours->numero_phrase!=noeud->positions->debut->numero_phrase)
+        {
+            if (phraseEnCours->numero_phrase==noeud->positions->debut->numero_phrase)
+            {
+                noeud->positions->debut->phrase=strdup(phraseEnCours->phrase);
+            }
+            phraseEnCours=phraseEnCours->suivant;
+        }
+    
+        positionEnCours=positionEnCours->suivant;
+    }
+    
+    updatePosition(noeud->filsDroit,listePhrase);
+    return 1;
+}
+
+//updatePosition (index->racine, listeNoeudPhrase listePhrase)
+
+ void afficher_occurences_mot(t_Index *index, char *mot)
+ {
+    t_Noeud* noeud_trouve;
+    noeud_trouve = rechercher_mot(index,mot);
+    t_Position* positionEnCours = noeud_trouve->positions->debut;
+    printf("Mot = %s\n",noeud_trouve->mot);
+    printf("Occurences = %d\n",noeud_trouve->nb_occurences);
+    while (positionEnCours!=NULL)
+    {
+        printf("| Ligne %d, mot %d : %s\n",positionEnCours->numero_ligne,positionEnCours->ordre,positionEnCours->phrase);
+        positionEnCours=positionEnCours->suivant;
+    }
+ }
+
+*/

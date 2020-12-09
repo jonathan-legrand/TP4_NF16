@@ -31,7 +31,6 @@ void stockage_noeuds (t_noeud *noeud, t_Noeud **noeuds)
     if(noeud == NULL)
         return;
     stockage_noeuds(noeud->filsGauche, noeuds);
-    //printf("id = %d mot = %s \t",id++,noeud->mot);
     noeuds[id++] = noeud;
     stockage_noeuds(noeud->filsDroit, noeuds);
 

@@ -120,7 +120,7 @@ int indexer_fichier(t_Index *index, char *filename)
             in_word = 1;
         }
     }       
-
+        num_phrase = num_phrase - 1;
         printf("\nLe nombre de ligne est %d\n",num_ligne);
         printf("\nLe nombre de phrases est %d\n",num_phrase);
         
@@ -139,8 +139,4 @@ int indexer_fichier(t_Index *index, char *filename)
 
 
 
-                // TODO à améliorer
-                // TODO l'idée serait de free tout le noeud mais pour ce faire il faudrait créer des malloc de noeud à chaque nouveau mot
-                // TODO il faudrait aussi modifier l'initialisation au début du programme de noeud et noeud->mot
-                // TODO le but est de passer à ajouter tous les caractéristiques du noeud c'est à dire son mot, sa liste de position etc..
-                // TODO car l'objectif est que dans la fonction ajouter noued on fasse appel à la fonction ajouter position quand le noeud->mot est le même
+                

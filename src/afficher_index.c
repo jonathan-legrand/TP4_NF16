@@ -66,7 +66,6 @@ parcours_arbre ( t_Noeud *noeud, char lettre )
  */
 void afficher_index ( t_Index *index )
 {
-    printf("teeeeest\n");
     t_Noeud *abr = index->racine;
     if (abr == NULL){
         printf("Erreur : index vide\n");
