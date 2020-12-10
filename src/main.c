@@ -40,7 +40,7 @@
         char nomFichier[TAILLE_MAX];
         t_Index* monIndex = creer_index(); 
         int nbr_mots;
-        //listeNoeudPhrase maListePhrases;
+        listeNoeudPhrase maListePhrases;
 
         //Déclarations case rechercher
         char mot_recherche[TAILLE_MAX];
@@ -113,13 +113,15 @@
 
                 case AFFICHER_OCCURENCES:
                     printf("\nNous sommes navrés de vous annoncer que nous n'avons pas réussi à implémenter cette fonction correctement.\n"
-                    "Nous vous invitons à regarder le fichier afficher_occurence.c qui rassemble \nl'ensemble des fonctions que nous aurions voulu implémenter.\n\n");
-                    //indexer_fichier_bis(&maListePhrases, "fichier_equilibre.txt");
-                    //updatePosition (monIndex->racine, maListePhrases);
-                    //strcpy(mot_recherche,""); // si l'utilisateur à fait un case RECHERCHER avant
-                    //printf("Entrez le mot à rechercher : ");
-                    //scanf("%s",mot_recherche);
-                    //afficher_occurences_mot(monIndex, mot_recherche);
+                    "Nous vous invitons à regarder le fichier afficher_occurence.c qui rassemble \nl'ensemble des fonctions que nous avons implémentées.\n");
+                    printf("Le test suivant va malheureusement renvoyer des phrases null.\n\n");
+                    indexer_fichier_bis(&maListePhrases, "fichier_equilibre.txt");
+                    updatePosition (monIndex->racine, maListePhrases);
+                    strcpy(mot_recherche,""); // si l'utilisateur à fait un case RECHERCHER avant
+                    printf("Entrez le mot à rechercher : ");
+                    scanf("%s",mot_recherche);
+                    afficher_occurences_mot(monIndex, mot_recherche);
+                    printf("\n");
                     break;
 
                 case EQUILIBRER:

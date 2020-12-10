@@ -1,3 +1,3 @@
 Ceci est un test qui me permet de tester ma fonction sur les fichiers. Je ne sais pas si cela va marcher.
 Je suppose que je vais avoir une segmentation fault.
-Je prie pour que ca marche. Je suis sur que ca va marcher. Je suis sur de moi.
+Je prie pour que ca marche meme si je suis sur que ca ne va pas marcher.

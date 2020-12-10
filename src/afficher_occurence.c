@@ -38,8 +38,6 @@ p_Noeud* ajouterNoeudPhrase(listeNoeudPhrase* listePhrases, int num_phrase,char 
     {
         return NULL;
     }
-    
-
 }
 
 
@@ -133,13 +131,20 @@ int updatePosition (t_Noeud *noeud, listeNoeudPhrase listePhrase)
  {
     t_Noeud* noeud_trouve;
     noeud_trouve = rechercher_mot(index,mot);
-    t_Position* positionEnCours = noeud_trouve->positions->debut;
-    printf("Mot = %s\n",noeud_trouve->mot);
-    printf("Occurences = %d\n",noeud_trouve->nb_occurences);
-    while (positionEnCours!=NULL)
+    if (noeud_trouve == NULL)
     {
-        printf("| Ligne %d, mot %d : %s\n",positionEnCours->numero_ligne,positionEnCours->ordre,positionEnCours->phrase);
-        positionEnCours=positionEnCours->suivant;
+        printf("Le mot n'est pas présent dans l'index\n\n");
+    } 
+    else 
+    {
+        t_Position* positionEnCours = noeud_trouve->positions->debut;
+        printf("Mot = %s\n",noeud_trouve->mot);
+        printf("Occurences = %d\n",noeud_trouve->nb_occurences);
+        while (positionEnCours!=NULL)
+        {
+            printf("| Ligne %d, mot %d : %s\n",positionEnCours->numero_ligne,positionEnCours->ordre,positionEnCours->phrase);
+            positionEnCours=positionEnCours->suivant;
+        }
     }
  }
 
